@@ -1,0 +1,15 @@
+includes:
+    - ./vendor/worksome/coding-style/larastan.neon
+
+parameters:
+    paths:
+        - src
+        - database
+        - tests
+        - routes
+
+    # The level 10 is the highest level
+    level: 10
+
+    ignoreErrors:
+        - '#^Illuminate\\Support\\Facades\\[a-zA-Z0-9\\_]+ facade should not be used\.$#'
