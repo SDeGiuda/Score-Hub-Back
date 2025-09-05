@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Users\App\Controllers;
+namespace Src\Users\App\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Lightit\Users\App\Requests\UpsertUserRequest;
-use Lightit\Users\App\Resources\UserResource;
-use Lightit\Users\Domain\Actions\StoreUserAction;
+use Src\Users\App\Requests\UpsertUserRequest;
+use Src\Users\App\Resources\UserResource;
+use Src\Users\Domain\Actions\StoreUserAction;
 
 final readonly class StoreUserController
 {

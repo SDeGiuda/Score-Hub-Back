@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Users\Domain\Actions;
+namespace Src\Users\Domain\Actions;
 
-use Lightit\Users\Domain\DataTransferObjects\UserDto;
-use Lightit\Users\Domain\Models\User;
+use Src\Users\Domain\DataTransferObjects\UserDto;
+use Src\Users\Domain\Models\User;
 
 class UpdateUserAction
 {

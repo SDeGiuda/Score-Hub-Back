@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature\Users;
 
 use Database\Factories\UserFactory;
-use Lightit\Users\App\Controllers\StoreUserController;
+use Src\Users\App\Controllers\StoreUserController;
 use function Pest\Laravel\getJson;
 
 describe('users', function (): void {

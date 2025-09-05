@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-use Lightit\Application;
+use Src\Application;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Foundation\Http\Middleware\{ConvertEmptyStringsToNull, PreventRequestsDuringMaintenance, TrimStrings};
 use Illuminate\Http\Middleware\{FrameGuard, HandleCors, TrustHosts, TrustProxies, ValidatePostSize};
-use Lightit\Security\App\Middlewares\SecurityHeaders;
-use Lightit\Shared\App\Exceptions\ExceptionHandler;
-use Lightit\Shared\App\Http\Middleware\ForceJsonResponse;
+use Src\Security\App\Middlewares\SecurityHeaders;
+use Src\Shared\App\Exceptions\ExceptionHandler;
+use Src\Shared\App\Http\Middleware\ForceJsonResponse;
 
 $exceptionManager = new ExceptionHandler();
 

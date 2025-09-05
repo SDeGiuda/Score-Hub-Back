@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Shared\App\Http\Middleware;
+namespace Src\Shared\App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\JsonResponse;

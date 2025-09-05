@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Users\Domain\Models;
+namespace Src\Users\Domain\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 

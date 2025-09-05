@@ -1,6 +1,9 @@
 <?php
 
+use Src\Shared\App\Providers\AppServiceProvider;
+use Src\Shared\App\Providers\EventServiceProvider;
+
 return [
-    Lightit\Shared\App\Providers\AppServiceProvider::class,
-    Lightit\Shared\App\Providers\EventServiceProvider::class,
+    AppServiceProvider::class,
+    EventServiceProvider::class,
 ];

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Shared\App\Providers;
+namespace Src\Shared\App\Providers;
 
 use Carbon\CarbonImmutable;
 use Dedoc\Scramble\Scramble;
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Lightit\Security\Domain\Actions\PreventDebugInProductionAction;
+use Src\Security\Domain\Actions\PreventDebugInProductionAction;
 
 class AppServiceProvider extends ServiceProvider
 {

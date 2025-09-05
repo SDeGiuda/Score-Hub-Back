@@ -7,8 +7,8 @@ namespace Tests\Feature\Users;
 use Database\Factories\UserFactory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Testing\Fluent\AssertableJson;
-use Lightit\Users\App\Controllers\GetUserController;
-use Lightit\Users\App\Resources\UserResource;
+use Src\Users\App\Controllers\GetUserController;
+use Src\Users\App\Resources\UserResource;
 use function Pest\Laravel\getJson;
 
 describe('users', function (): void {

@@ -7,7 +7,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Lightit\Users\Domain\Models\User;
+use Src\Users\Domain\Models\User;
 
 /**
  * @extends Factory<User>

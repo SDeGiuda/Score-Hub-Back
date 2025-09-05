@@ -76,7 +76,7 @@ Always use `sail` prefix for Docker commands:
 ### Sanctum Authentication
 - Uses Laravel Sanctum for API authentication
 - Routes protected with `auth:sanctum` middleware
-- Custom User model: `Lightit\Backoffice\Users\Domain\Models\User`
+- Custom User model: `Src\Backoffice\Users\Domain\Models\User`
 
 ### API Documentation
 - **Scramble** generates OpenAPI/Swagger docs automatically
@@ -135,7 +135,7 @@ class StoreUserRequestFactory extends RequestFactory
 Organize tests with descriptive blocks and controller references:
 
 ```php
-use Lightit\Users\App\Controllers\StoreUserController;describe('users', function (): void {
+use Src\Users\App\Controllers\StoreUserController;describe('users', function (): void {
     /** @see StoreUserController */
     it('can create a user successfully', function (): void {
         $data = StoreUserRequestFactory::new()->create();

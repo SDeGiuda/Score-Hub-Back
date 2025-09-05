@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Shared\App\Providers;
+namespace Src\Shared\App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Laravel\Telescope\IncomingEntry;
 use Laravel\Telescope\Telescope;
 use Laravel\Telescope\TelescopeApplicationServiceProvider;
-use Lightit\Users\Domain\Models\User;
+use Src\Users\Domain\Models\User;
 
 class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 {

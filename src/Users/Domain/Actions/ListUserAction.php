@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Users\Domain\Actions;
+namespace Src\Users\Domain\Actions;
 
 use Illuminate\Pagination\LengthAwarePaginator;
-use Lightit\Users\Domain\Models\User;
 use Spatie\QueryBuilder\QueryBuilder;
+use Src\Users\Domain\Models\User;
 
 class ListUserAction
 {

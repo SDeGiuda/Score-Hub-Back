@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Users\App\Controllers;
+namespace Src\Users\App\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Lightit\Users\App\Resources\UserResource;
-use Lightit\Users\Domain\Actions\ListUserAction;
+use Src\Users\App\Resources\UserResource;
+use Src\Users\Domain\Actions\ListUserAction;
 
 final readonly class ListUserController
 {
