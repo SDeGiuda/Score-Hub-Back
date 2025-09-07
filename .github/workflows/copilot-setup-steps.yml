@@ -40,7 +40,7 @@ jobs:
     # You can define any steps you want, and they will run before the agent starts.
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
