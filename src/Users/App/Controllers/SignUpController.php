@@ -7,11 +7,11 @@ namespace Src\Users\App\Controllers;
 use Illuminate\Http\JsonResponse;
 use Src\Users\App\Requests\UpsertUserRequest;
 use Src\Users\App\Resources\UserResource;
-use Src\Users\Domain\Actions\StoreUserAction;
+use Src\Users\Domain\Actions\SignUpAction;
 
-final readonly class StoreUserController
+final readonly class SignUpController
 {
-    public function __invoke(UpsertUserRequest $request, StoreUserAction $storeUserAction): JsonResponse
+    public function __invoke(UpsertUserRequest $request, SignUpAction $storeUserAction): JsonResponse
     {
         $user = $storeUserAction->execute($request->toDto());
 

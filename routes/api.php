@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Support\Facades\Route;
-use Src\Users\App\Controllers\{GetUserController, DeleteUserController, ListUserController, StoreUserController, UpdateUserController};
+use Src\Users\App\Controllers\{GetUserController, DeleteUserController, ListUserController, SignUpController, UpdateUserController};
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ Route::prefix('users')
         Route::get('/{user}', GetUserController::class)
             ->withTrashed()
             ->whereNumber('user');
-        Route::post('/', StoreUserController::class);
+        Route::post('/', SignUpController::class);
         Route::put('/{user}', UpdateUserController::class)
             ->whereNumber('user');
         Route::delete('/{user}', DeleteUserController::class)

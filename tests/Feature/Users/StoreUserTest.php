@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Illuminate\Testing\Fluent\AssertableJson;
-use Src\Users\App\Controllers\StoreUserController;
+use Src\Users\App\Controllers\SignUpController;
 use Src\Users\App\Notifications\UserRegisteredNotification;
 use Src\Users\App\Resources\UserResource;
 use Src\Users\Domain\Models\User;
@@ -51,7 +51,7 @@ dataset(name: 'validation-rules', dataset: [
 beforeEach(fn () => Notification::fake());
 
 describe('users', function (): void {
-    /** @see StoreUserController */
+    /** @see SignUpController */
     it(description: 'can create a user successfully', closure: function (): void {
         $data = StoreUserRequestFactory::new()->create([
             'password' => '>e$pV4chNFcJoAB%X#{',
