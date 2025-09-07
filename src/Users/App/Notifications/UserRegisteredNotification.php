@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Users\App\Notifications;
+namespace Src\Users\App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Lightit\Users\Domain\Models\User;
+use Src\Users\Domain\Models\User;
 
 class UserRegisteredNotification extends Notification implements ShouldQueue, ShouldBeEncrypted
 {

@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Illuminate\Testing\Fluent\AssertableJson;
-use Lightit\Users\App\Controllers\StoreUserController;
-use Lightit\Users\App\Notifications\UserRegisteredNotification;
-use Lightit\Users\App\Resources\UserResource;
-use Lightit\Users\Domain\Models\User;
+use Src\Users\App\Controllers\SignUpController;
+use Src\Users\App\Notifications\UserRegisteredNotification;
+use Src\Users\App\Resources\UserResource;
+use Src\Users\Domain\Models\User;
 use Tests\RequestFactories\StoreUserRequestFactory;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
@@ -51,7 +51,7 @@ dataset(name: 'validation-rules', dataset: [
 beforeEach(fn () => Notification::fake());
 
 describe('users', function (): void {
-    /** @see StoreUserController */
+    /** @see SignUpController */
     it(description: 'can create a user successfully', closure: function (): void {
         $data = StoreUserRequestFactory::new()->create([
             'password' => '>e$pV4chNFcJoAB%X#{',

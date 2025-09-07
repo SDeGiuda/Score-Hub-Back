@@ -6,7 +6,7 @@ namespace Tests\Feature\Users;
 
 use Database\Factories\UserFactory;
 use Illuminate\Http\JsonResponse;
-use Lightit\Users\App\Controllers\DeleteUserController;
+use Src\Users\App\Controllers\DeleteUserController;
 use function Pest\Laravel\assertDatabaseMissing;
 use function Pest\Laravel\deleteJson;
 

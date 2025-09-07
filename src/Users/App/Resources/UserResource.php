@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Users\App\Resources;
+namespace Src\Users\App\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Lightit\Users\Domain\Models\User;
+use Src\Users\Domain\Models\User;
 
 /**
  * @mixin User

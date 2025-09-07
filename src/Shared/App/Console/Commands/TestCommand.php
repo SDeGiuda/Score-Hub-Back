@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Shared\App\Console\Commands;
+namespace Src\Shared\App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Psr\Log\LoggerInterface;

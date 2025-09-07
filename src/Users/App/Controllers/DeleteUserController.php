@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Users\App\Controllers;
+namespace Src\Users\App\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Lightit\Users\Domain\Models\User;
+use Src\Users\Domain\Models\User;
 
 final readonly class DeleteUserController
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Shared\App\Exceptions;
+namespace Src\Shared\App\Exceptions;
 
 use Closure;
 use Exception;
@@ -15,15 +15,15 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Lightit\Shared\App\Exceptions\Http\HttpException;
-use Lightit\Shared\App\Exceptions\Http\InvalidActionException;
-use Lightit\Shared\App\Exceptions\Http\ModelNotFoundHttpException;
-use Lightit\Shared\App\Exceptions\Http\PageNotFoundException;
-use Lightit\Shared\App\Exceptions\Http\RelationNotFoundException;
-use Lightit\Shared\App\Exceptions\Http\UnauthenticatedException;
-use Lightit\Shared\App\Exceptions\Http\UnauthorizedException;
-use Lightit\Shared\App\Exceptions\Http\ValidationFailedException;
 use Sentry\Laravel\Integration;
+use Src\Shared\App\Exceptions\Http\HttpException;
+use Src\Shared\App\Exceptions\Http\InvalidActionException;
+use Src\Shared\App\Exceptions\Http\ModelNotFoundHttpException;
+use Src\Shared\App\Exceptions\Http\PageNotFoundException;
+use Src\Shared\App\Exceptions\Http\RelationNotFoundException;
+use Src\Shared\App\Exceptions\Http\UnauthenticatedException;
+use Src\Shared\App\Exceptions\Http\UnauthorizedException;
+use Src\Shared\App\Exceptions\Http\ValidationFailedException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;

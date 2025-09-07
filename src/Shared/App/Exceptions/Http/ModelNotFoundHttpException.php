@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Shared\App\Exceptions\Http;
+namespace Src\Shared\App\Exceptions\Http;
 
 class ModelNotFoundHttpException extends HttpException
 {

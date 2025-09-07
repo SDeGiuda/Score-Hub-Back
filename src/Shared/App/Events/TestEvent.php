@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Shared\App\Events;
+namespace Src\Shared\App\Events;
 
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;

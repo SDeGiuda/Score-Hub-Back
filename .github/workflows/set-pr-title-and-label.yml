@@ -40,7 +40,7 @@ jobs:
 
             const today = new Date();
 
-            let title = `Invalid branch name 👀 (type/task-id/description)`;
+
             let updatedBody = body;
 
             if (["main", "master"].includes(baseBranch)) {

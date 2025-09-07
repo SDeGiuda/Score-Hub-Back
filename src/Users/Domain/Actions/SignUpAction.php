@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Users\Domain\Actions;
+namespace Src\Users\Domain\Actions;
 
-use Lightit\Users\App\Notifications\UserRegisteredNotification;
-use Lightit\Users\Domain\DataTransferObjects\UserDto;
-use Lightit\Users\Domain\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Src\Users\App\Notifications\UserRegisteredNotification;
+use Src\Users\Domain\DataTransferObjects\UserDto;
+use Src\Users\Domain\Models\User;
 
-class StoreUserAction
+class SignUpAction
 {
     public function execute(UserDto $userDto): User
     {
@@ -16,7 +17,7 @@ class StoreUserAction
 
         $user->name = $userDto->name;
         $user->email = $userDto->emailAddress;
-        $user->password = $userDto->password;
+        $user->password = Hash::make($userDto->password);
 
         $user->save();
 
