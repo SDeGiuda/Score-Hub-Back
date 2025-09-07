@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Src\Users\Domain\Actions;
+
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
 use PHPOpenSourceSaver\JWTAuth\Factory as JWTAuth;
 use PHPOpenSourceSaver\JWTAuth\JWTGuard;
@@ -24,7 +25,7 @@ final class LoginAction
         /** @var JWTGuard $guard */
         $guard = $this->factory->guard('api');
 
-        if (!$guard->attempt($credentials)) {
+        if (! $guard->attempt($credentials)) {
             throw new UnauthorizedException();
         }
 
@@ -42,5 +43,3 @@ final class LoginAction
         );
     }
 }
-
-

@@ -13,7 +13,6 @@ class LogoutController
 {
     public function __invoke(Request $request, LogoutAction $logoutAction): Response
     {
-
         $user = $request->user();
 
         if (! $user) {

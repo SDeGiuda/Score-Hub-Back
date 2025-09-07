@@ -12,7 +12,7 @@ class LoginController
 {
     public function __invoke(
         LoginAction $loginAction,
-        LoginRequest $loginRequest
+        LoginRequest $loginRequest,
     ): JsonResponse {
         $credentials = $loginRequest->only([$loginRequest::EMAIL, $loginRequest::PASSWORD]);
 

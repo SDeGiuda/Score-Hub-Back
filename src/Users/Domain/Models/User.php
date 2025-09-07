@@ -50,7 +50,7 @@ class User extends Authenticatable
     protected $guarded = [];
 
     protected $hidden = [
-        'password'
+        'password',
     ];
 
     /**
