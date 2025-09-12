@@ -24,19 +24,6 @@ The packages are used for `reason1` and `reason2`.
 Because of this, you must run `npm i` before starting.
 -->
 
-## 📷 Screenshots
-
-<!--
-Please include before AND after screenshots of the change, or proof of test about your branch
--->
-
-### Before
-
-![image](https://github.com/Light-it-labs/lightranet/assets/17851841/f55f13c3-0f79-4d38-a6d9-51444daf3c81)
-
-### After
-
-![image](https://github.com/Light-it-labs/lightranet/assets/17851841/38fd90e3-09e0-4af4-85e0-b8801d479f8c)
 
 
 ## 💬 Comments
