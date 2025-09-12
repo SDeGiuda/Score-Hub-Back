@@ -13,19 +13,20 @@ use Src\Games\Domain\Models\Game;
  */
 class GameResource extends JsonResource
 {
+
     /**
-     * @return array{id: int, name: string}
+     * @return array{name: mixed, number_of_players: mixed, turn_duration: mixed, hasTurns: mixed, hasTeams: mixed, team_length: mixed, rules: mixed}
      */
     public function toArray(Request $request): array
     {
         return [
             'name' => $this->name,
-            "number_of_players"=> $this->number_of_players ,
-            "turn_duration"=>  $this->turn_duration,
-            "hasTurns"=>   $this->has_turns,
-            "hasTeams"=> $this->has_teams,
-            "team_length"=>$this->team_length,
-            "rules"=>$this->rules
+            'number_of_players'=> $this->number_of_players,
+            'turn_duration'=>  $this->turn_duration,
+            'hasTurns'=>   $this->has_turns,
+            'hasTeams'=> $this->has_teams,
+            'team_length'=>$this->team_length,
+            'rules'=>$this->rules,
         ];
     }
 }

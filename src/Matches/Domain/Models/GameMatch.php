@@ -12,11 +12,12 @@ use Src\MatchResults\Domain\Models\MatchResult;
 
 class GameMatch extends Model
 {
-    protected $table = "matches";
+    protected $table = 'matches';
+
     protected $guarded = [];
 
     /**
-     * @return BelongsTo<Game,$this>
+     * @return BelongsTo<Game, $this>
      */
     public function game(): BelongsTo
     {
@@ -24,11 +25,10 @@ class GameMatch extends Model
     }
 
     /**
-     * @return HasMany<MatchResult,$this>
+     * @return HasMany<MatchResult, $this>
      */
-    public function results(): HasMany{
+    public function results(): HasMany
+    {
         return $this->hasMany(MatchResult::class);
     }
-
-
 }

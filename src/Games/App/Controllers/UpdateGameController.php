@@ -12,9 +12,10 @@ use Src\Games\Domain\Models\Game;
 
 class UpdateGameController
 {
-    public function __invoke(UpsertGameRequest $request, UpdateGameAction $action,Game $game): JsonResponse
+    public function __invoke(UpsertGameRequest $request, UpdateGameAction $action, Game $game): JsonResponse
     {
-        $updatedGame = $action->execute($game,$request->toDto());
+        $updatedGame = $action->execute($game, $request->toDto());
+
         return GameResource::make($updatedGame)->response();
     }
 }

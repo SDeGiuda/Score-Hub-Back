@@ -13,6 +13,5 @@ class GetGameController
     public function __invoke(Game $game): JsonResponse
     {
         return GameResource::make($game)->response();
-
     }
 }

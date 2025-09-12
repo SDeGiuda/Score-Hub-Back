@@ -14,5 +14,4 @@ class ListGameController
     {
         return GameResource::collection(Game::all())->response();
     }
-
 }

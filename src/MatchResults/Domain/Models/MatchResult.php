@@ -12,29 +12,32 @@ use Src\Users\Domain\Models\User;
 /**
  * @property-read Game|null $game
  * @property-read User|null $player
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult query()
+ *
  * @mixin \Eloquent
  */
 class MatchResult extends Model
 {
-    protected $table = "matches";
+    protected $table = 'matches';
+
     protected $guarded = [];
 
     /**
-     * @return BelongsTo<User,$this>
+     * @return BelongsTo<User, $this>
      */
     public function player(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
+
     /**
-     * @return BelongsTo<Game,$this>
+     * @return BelongsTo<Game, $this>
      */
-    public function game(): BelongsTo{
+    public function game(): BelongsTo
+    {
         return $this->belongsTo(Game::class);
     }
-
-
 }
