@@ -52,7 +52,7 @@ This step is not necessary when you use Docker.
 1. Clone GitHub repo for this project locally:
 
    ```bash
-   git clone git@github.com:Light-it-labs/laravel
+   git clone ...
    ```
 
 2. cd into your project and create a copy of your .env file
