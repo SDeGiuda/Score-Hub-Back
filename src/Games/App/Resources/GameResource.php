@@ -13,7 +13,6 @@ use Src\Games\Domain\Models\Game;
  */
 class GameResource extends JsonResource
 {
-
     /**
      * @return array{name: mixed, number_of_players: mixed, turn_duration: mixed, hasTurns: mixed, hasTeams: mixed, team_length: mixed, rules: mixed}
      */
