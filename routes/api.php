@@ -5,6 +5,10 @@ declare(strict_types=1);
 use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Support\Facades\Route;
 use Src\Users\App\Controllers\{GetUserController, DeleteUserController, ListUserController, SignUpController, UpdateUserController};
+use Src\Games\App\Controllers\CreateGameControlller;
+use Src\Games\App\Controllers\GetGameController;
+use Src\Games\App\Controllers\ListGameController;
+use Src\Games\App\Controllers\UpdateGameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +46,12 @@ Route::prefix('users')
         Route::delete('/{user}', DeleteUserController::class)
             ->whereNumber('user');
     });
+
+Route::middleware(['auth'])->group(static function (): void {
+    Route::prefix("/games")->group(static function (): void {
+        Route::get('/', ListGameController::class);
+        Route::get('/{game}', GetGameController::class);
+        Route::post('/',CreateGameControlller::class);
+        Route::put('/{game}', UpdateGameController::class);
+    });
+});
