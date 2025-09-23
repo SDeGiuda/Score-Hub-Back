@@ -9,9 +9,9 @@ namespace Src\Users\Domain\Models;
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 /**
  * Domain\Users\Models\User
@@ -65,6 +65,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
     use HasApiTokens;
     use Notifiable;
 
