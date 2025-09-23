@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Support\Facades\Route;
-use Src\Users\App\Controllers\{GetUserController, DeleteUserController, ListUserController, SignUpController, UpdateUserController};
+use Src\Users\App\Controllers\{GetUserController, DeleteUserController, ListUserController, SignUpController, UpdateUserController,LoginController};
 use Src\Games\App\Controllers\CreateGameControlller;
 use Src\Games\App\Controllers\GetGameController;
 use Src\Games\App\Controllers\ListGameController;
@@ -45,6 +45,7 @@ Route::prefix('users')
             ->whereNumber('user');
         Route::delete('/{user}', DeleteUserController::class)
             ->whereNumber('user');
+        Route::get('/login', LoginController::class);
     });
 
 Route::middleware(['auth'])->group(static function (): void {
@@ -53,5 +54,6 @@ Route::middleware(['auth'])->group(static function (): void {
         Route::get('/{game}', GetGameController::class);
         Route::post('/',CreateGameControlller::class);
         Route::put('/{game}', UpdateGameController::class);
+        // Route::delete('/{game}', DeleteGameController::class); Capaz que un usuario admin pueda eliminar un juego.
     });
 });
