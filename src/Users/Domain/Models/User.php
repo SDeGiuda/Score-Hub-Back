@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+use Src\MatchResults\Domain\Models\MatchResult;
 
 /**
  * Domain\Users\Models\User
@@ -115,15 +116,5 @@ class User extends Authenticatable implements JWTSubject
     public function results(): BelongsToMany
     {
         return $this->belongsToMany(MatchResult::class);
-    }
-
-    public function getJWTIdentifier(): mixed
-    {
-        return $this->getKey();
-    }
-
-    public function getJWTCustomClaims(): array
-    {
-        return [];
     }
 }
