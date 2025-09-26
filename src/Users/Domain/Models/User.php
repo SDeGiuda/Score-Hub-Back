@@ -8,10 +8,12 @@ namespace Src\Users\Domain\Models;
 
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+use Src\MatchResults\Domain\Models\MatchResult;
 
 /**
  * Domain\Users\Models\User
@@ -42,6 +44,10 @@ use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  *
  * @mixin Eloquent
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, MatchResult> $results
+ * @property-read int|null $results_count
+ *
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements JWTSubject
@@ -102,5 +108,13 @@ class User extends Authenticatable implements JWTSubject
                 return strtolower($value);
             },
         );
+    }
+
+    /**
+     * @return BelongsToMany<MatchResult, $this>
+     */
+    public function results(): BelongsToMany
+    {
+        return $this->belongsToMany(MatchResult::class);
     }
 }
