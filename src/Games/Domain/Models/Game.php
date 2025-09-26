@@ -6,7 +6,7 @@ namespace Src\Games\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Src\Match\Domain\Models\GameMatch;
+use Src\Matches\Domain\Models\GameMatch;
 
 /**
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Game newModelQuery()

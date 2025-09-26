@@ -55,6 +55,9 @@ class GameMatch extends Model
         return $this->hasMany(MatchResult::class);
     }
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class);

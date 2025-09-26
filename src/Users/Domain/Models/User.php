@@ -110,19 +110,19 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
-     * @return BelongsToMany<MatchResult,$this>
+     * @return BelongsToMany<MatchResult, $this>
      */
     public function results(): BelongsToMany
     {
         return $this->belongsToMany(MatchResult::class);
     }
 
-    public function getJWTIdentifier()
+    public function getJWTIdentifier(): mixed
     {
         return $this->getKey();
     }
 
-    public function getJWTCustomClaims()
+    public function getJWTCustomClaims(): array
     {
         return [];
     }
