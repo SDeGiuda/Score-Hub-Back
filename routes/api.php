@@ -9,6 +9,9 @@ use Src\Games\App\Controllers\CreateGameControlller;
 use Src\Games\App\Controllers\GetGameController;
 use Src\Games\App\Controllers\ListGameController;
 use Src\Games\App\Controllers\UpdateGameController;
+use Src\Matches\App\Controllers\CreateMatchController;
+use Src\Matches\App\Controllers\GetMatchController;
+use Src\MatchResults\App\Controllers\StoreResultsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,5 +58,12 @@ Route::middleware(['auth'])->group(static function (): void {
         Route::post('/',CreateGameControlller::class);
         Route::put('/{game}', UpdateGameController::class);
         // Route::delete('/{game}', DeleteGameController::class); Capaz que un usuario admin pueda eliminar un juego.
+    });
+    Route::prefix("/game-match")->group(static function (): void {
+        Route::post('/', CreateMatchController::class);
+        Route::get('/{gameMatch}', GetMatchController::class);
+    });
+    Route::prefix("/results")->group(static function (): void {
+        Route::post('/',StoreResultsController::class);
     });
 });

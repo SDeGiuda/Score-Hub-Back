@@ -12,7 +12,6 @@ use Src\Match\Domain\Models\GameMatch;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Game newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Game newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Game query()
- *
  * @property int                          $id
  * @property string                       $name
  * @property int                          $number_of_players
@@ -24,7 +23,6 @@ use Src\Match\Domain\Models\GameMatch;
  * @property string|null                  $rules
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
- *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereHasTeams($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereHasTurns($value)
@@ -36,7 +34,6 @@ use Src\Match\Domain\Models\GameMatch;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereTeamLength($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereTurnDuration($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class Game extends Model
