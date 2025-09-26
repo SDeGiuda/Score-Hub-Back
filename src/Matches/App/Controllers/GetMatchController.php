@@ -9,9 +9,8 @@ use Src\Matches\Domain\Models\GameMatch;
 
 class GetMatchController
 {
-    public function __invoke(GameMatch $match):JsonResponse
+    public function __invoke(GameMatch $match): JsonResponse
     {
         return response()->json($match);
     }
-
 }

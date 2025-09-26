@@ -14,5 +14,6 @@ readonly class ResultDto
         public int $position,
         public int $points,
         public ResultStatusEnum $status,
-    ) {}
+    ) {
+    }
 }

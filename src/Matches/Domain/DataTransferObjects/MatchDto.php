@@ -9,5 +9,6 @@ readonly class MatchDto
     public function __construct(
         public int $creatorId,
         public int $gameId,
-    ){}
+    ) {
+    }
 }

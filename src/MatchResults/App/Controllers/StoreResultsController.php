@@ -8,9 +8,8 @@ use Src\MatchResults\App\Requests\StoreResultsRequest;
 
 class StoreResultsController
 {
-    public function __invoke(StoreResultsRequest $request)
+    public function __invoke(StoreResultsRequest $request): void
     {
-        $resultsDtos = $request->toDtos();
-
+        $request->toDtos();
     }
 }

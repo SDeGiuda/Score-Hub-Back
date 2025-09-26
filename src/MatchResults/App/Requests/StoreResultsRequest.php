@@ -3,11 +3,13 @@
 declare(strict_types=1);
 
 namespace Src\MatchResults\App\Requests;
+
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Src\MatchResults\Domain\DataTransferObjects\ResultDto;
 use Src\MatchResults\Domain\Enums\ResultStatusEnum;
 use Src\Users\Domain\Models\User;
+
 class StoreResultsRequest extends FormRequest
 {
     public function rules(): array
@@ -18,7 +20,7 @@ class StoreResultsRequest extends FormRequest
             'results.*.user_id' => ['required', Rule::exists(User::class, 'id')],
             'results.*.position' => ['required', 'integer', 'min:1'],
             'results.*.points'   => ['required', 'integer', 'min:0'],
-            'results.*.status'=>[Rule::enum(ResultStatusEnum::class)]
+            'results.*.status'=>[Rule::enum(ResultStatusEnum::class)],
         ];
     }
 

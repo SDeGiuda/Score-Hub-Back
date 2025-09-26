@@ -23,8 +23,8 @@ class CreateMatchRequest extends FormRequest
     public function toDto(): MatchDto
     {
         return new MatchDto(
-            creatorId: $this->integer("creator_id"),
-            gameId: $this->integer("game_id"),
+            creatorId: $this->integer('creator_id'),
+            gameId: $this->integer('game_id'),
         );
     }
 }

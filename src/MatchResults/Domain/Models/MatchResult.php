@@ -12,19 +12,23 @@ use Src\Users\Domain\Models\User;
 /**
  * @property-read Game|null $game
  * @property-read User|null $player
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult query()
+ *
  * @property int                          $id
  * @property int                          $creator_id
  * @property int                          $game_id
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult whereCreatorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult whereGameId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class MatchResult extends Model

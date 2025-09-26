@@ -7,6 +7,7 @@ namespace Src\Users\App\Controllers;
 use Illuminate\Http\JsonResponse;
 use Src\Users\App\Requests\LoginRequest;
 use Src\Users\Domain\Actions\LoginAction;
+use Src\Users\Domain\Models\User;
 
 class LoginController
 {
@@ -15,7 +16,7 @@ class LoginController
         LoginRequest $loginRequest,
     ): JsonResponse {
         $credentials = $loginRequest->only([$loginRequest::EMAIL, $loginRequest::PASSWORD]);
-
+        User::where('email', $credentials['email'])->firstOrFail();
         $loginDto = $loginAction->execute($credentials);
 
         return response()->json([
