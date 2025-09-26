@@ -1,21 +1,79 @@
-<!-- markdownlint-disable MD033 -->
-<!-- markdownlint-disable-next-line MD041 -->
+# Score Hub Backend - Laravel API
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-<!-- markdownlint-enable MD033 -->
-## Install
+Backend para la aplicación Score Hub desarrollado en Laravel con arquitectura hexagonal.
 
-Requirements: Php >= 8.4.0 & Composer
+## 📋 Requisitos
 
-- `brew install php@8.4 composer` Mac OS X with brew
-- `apt-get install php8.4` Ubuntu with apt-get (use sudo if is necessary)
+- **PHP 8.2+**
+- **Composer**
+- **SQLite** (incluido en PHP)
 
-This step is not necessary when you use Docker.
+## 🚀 Instalación y Configuración
+
+### 1. Clonar/Descargar el proyecto
+```bash
+# Si tienes Git
+git clone [URL_DEL_REPOSITORIO]
+cd Score-Hub-Back
+
+# O descomprimir el archivo ZIP en una carpeta llamada Score-Hub-Back
+```
+
+### 2. Instalar dependencias de PHP
+```bash
+composer install
+```
+
+### 3. Configurar el archivo de entorno
+```bash
+# Copiar el archivo de ejemplo
+cp .env.example .env
+```
+
+### 4. Editar el archivo .env
+Abre el archivo `.env` y configura las siguientes variables:
+
+```bash
+# Configuración básica
+APP_NAME=ScoreHub
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
+# Base de datos SQLite
+DB_CONNECTION=sqlite
+DB_DATABASE=/ruta/absoluta/a/tu/proyecto/Score-Hub-Back/database/database.sqlite
+
+# JWT para autenticación
+JWT_SECRET=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+
+# Email para desarrollo
+MAIL_MAILER=log
+MAIL_HOST=127.0.0.1
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+
+# Cache
+CACHE_STORE=file
+```
+
+### 5. Generar la clave de aplicación
+```bash
+php artisan key:generate
+```
+
+### 6. Configurar la base de datos SQLite
+```bash
+# Crear el archivo de base de datos
+touch database/database.sqlite
+
+# Ejecutar las migraciones
+php artisan migrate
+```
+
+## 🏃‍♂️ Ejecutar el proyecto
 
 ### Techs
 

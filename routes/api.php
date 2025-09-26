@@ -45,7 +45,7 @@ Route::prefix('users')
             ->whereNumber('user');
         Route::delete('/{user}', DeleteUserController::class)
             ->whereNumber('user');
-        Route::get('/login', LoginController::class);
+        Route::post('/login', LoginController::class);
     });
 
 Route::middleware(['auth'])->group(static function (): void {
