@@ -18,7 +18,7 @@ class CreateGameAction
             ]);
         }
 
-        if ($gameDto->hasTeams && ! $gameDto->team_length > 1) {
+        if ($gameDto->hasTeams && ! $gameDto->number_of_teams > 1) {
             throw ValidationException::withMessages([]);
         }
 
@@ -28,7 +28,7 @@ class CreateGameAction
             'turn_duration'=>  $gameDto->turn_duration,
             'hasTurns'=>   $gameDto->hasTurns,
             'hasTeams'=> $gameDto->hasTeams,
-            'team_length'=>$gameDto->team_length,
+            'number_of_teams'=>$gameDto->number_of_teams,
             'rules'=>$gameDto->rules,
         ]);
     }

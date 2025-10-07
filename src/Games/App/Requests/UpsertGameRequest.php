@@ -40,12 +40,16 @@ class UpsertGameRequest extends FormRequest
     {
         return new GameDto(
             name: $this->string(self::NAME)->toString(),
+            rules: $this->string(self::RULES)->toString(),
             number_of_players: $this->integer(self::NUMBER_OF_PLAYERS),
-            turn_duration: $this->integer(self::TURN_DURATION),
-            hasTurns: $this->boolean(self::HAS_TURNS),
+            way_of_ending_id: 1, // Default value - needs form validation
+            visibility: 1, // Default value - needs form validation
+            winner_criteria: 1, // Default value - needs form validation
+            description: $this->string('description')->toString(),
             hasTeams: $this->boolean(self::HAS_TEAMS),
-            team_length: $this->integer(self::TEAM_LENGTH),
-            rules: $this->string(self::RULES)->toString()
+            hasTurns: $this->boolean(self::HAS_TURNS),
+            turn_duration: $this->integer(self::TURN_DURATION),
+            number_of_teams: $this->integer(self::TEAM_LENGTH) // Mapping team_length to number_of_teams
         );
     }
 }
