@@ -17,7 +17,6 @@ class CreateMatchController
             'game_id' => $dto->gameId,
             'creator_id' => $dto->creatorId,
         ]);
-
         return response()->json($match);
     }
 }

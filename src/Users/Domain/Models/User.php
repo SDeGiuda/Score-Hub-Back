@@ -30,7 +30,6 @@ use Src\MatchResults\Domain\Models\MatchResult;
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
@@ -42,12 +41,9 @@ use Src\MatchResults\Domain\Models\MatchResult;
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- *
  * @mixin Eloquent
- *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, MatchResult> $results
  * @property-read int|null $results_count
- *
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements JWTSubject

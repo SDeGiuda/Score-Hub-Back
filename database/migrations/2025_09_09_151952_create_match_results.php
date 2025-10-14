@@ -10,7 +10,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('game_results', function (Blueprint $table) {
+        Schema::create('match_results', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->constrained("users");
             $table->foreignId("match_id")->constrained("matches");
