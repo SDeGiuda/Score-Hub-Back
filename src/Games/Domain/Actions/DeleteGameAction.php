@@ -10,6 +10,6 @@ class DeleteGameAction
 {
     public function execute(Game $game): bool
     {
-        return $game->delete();
+        return (bool) $game->delete();
     }
 }
