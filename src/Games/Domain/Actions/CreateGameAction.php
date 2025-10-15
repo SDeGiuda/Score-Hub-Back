@@ -11,9 +11,9 @@ use Src\Users\Domain\Models\User;
 
 class CreateGameAction
 {
-    public function execute(GameDto $gameDto,User $user): Game
+    public function execute(GameDto $gameDto, User $user): Game
     {
-        if (!$user){
+        if (! $user) {
             throw ValidationException::withMessages([
                 'user' => 'This game was created by a null user.',
             ]);
@@ -24,8 +24,16 @@ class CreateGameAction
             ]);
         }
 
-        if ($gameDto->hasTeams && ! $gameDto->min_team_length > 1 || ! $gameDto->max_team_length >= $gameDto->min_team_length) {
-            throw ValidationException::withMessages([]);
+        if (
+            $gameDto->hasTeams
+            && (
+                $gameDto->min_team_length < 1
+                || $gameDto->max_team_length < $gameDto->min_team_length
+            )
+        ) {
+            throw ValidationException::withMessages([
+                'team_length' => 'Team configuration is invalid.',
+            ]);
         }
 
         return Game::create([
@@ -34,8 +42,8 @@ class CreateGameAction
             'turn_duration'=>  $gameDto->turn_duration,
             'round_duration' =>  $gameDto->round_duration,
             'rounds'=>  $gameDto->rounds,
-            'hasTurns'=>   $gameDto->hasTurns,
-            'hasTeams'=> $gameDto->hasTeams,
+            'has_turns'=>   $gameDto->hasTurns,
+            'has_teams'=> $gameDto->hasTeams,
             'min_team_length'=>$gameDto->min_team_length,
             'max_team_length'=>$gameDto->max_team_length,
             'ending' => $gameDto->ending->value,

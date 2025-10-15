@@ -24,7 +24,7 @@ use Src\MatchResults\App\Controllers\StoreResultsController;
 |
 */
 
-Route::middleware('auth:sanctum')
+Route::middleware('auth:api')
     ->get('/me', function (#[CurrentUser] $user) {
         return response()->json([
             'data' => $user,
@@ -51,7 +51,7 @@ Route::prefix('users')
         Route::post('/login', LoginController::class);
     });
 
-Route::middleware(['auth'])->group(static function (): void {
+Route::middleware(['auth:api'])->group(static function (): void {
     Route::prefix("/games")->group(static function (): void {
         Route::get('/', ListGameController::class);
         Route::get('/{game}', GetGameController::class);

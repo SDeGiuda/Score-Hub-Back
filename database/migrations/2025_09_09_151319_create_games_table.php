@@ -24,7 +24,7 @@ return new class extends Migration
             $table->boolean("has_teams");
             $table->integer("min_team_length");
             $table->integer("max_team_length");
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->longText("rules")->nullable();
             $table->timestamps();
         });

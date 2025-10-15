@@ -13,9 +13,13 @@ use Src\Users\Domain\Models\User;
 
 class CreateGameControlller
 {
-    public function __invoke(UpsertGameRequest $request, CreateGameAction $createGameAction,#[CurrentUser] User $user): JsonResponse
-    {
-        $user = $createGameAction->execute($request->toDto(),$user);
+    public function __invoke(
+        UpsertGameRequest $request,
+        CreateGameAction $createGameAction,
+        #[CurrentUser]
+        User $user,
+    ): JsonResponse {
+        $user = $createGameAction->execute($request->toDto(), $user);
 
         return UserResource::make($user)->response();
     }

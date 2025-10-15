@@ -24,7 +24,7 @@ class GameResource extends JsonResource
             'turn_duration'=>  $this->turn_duration,
             'hasTurns'=>   $this->has_turns,
             'hasTeams'=> $this->has_teams,
-            'team_length'=>$this->team_length,
+            'min_team_length'=>$this->min_team_length,
             'rules'=>$this->rules,
         ];
     }
