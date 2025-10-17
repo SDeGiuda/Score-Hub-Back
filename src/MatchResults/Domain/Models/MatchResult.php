@@ -10,21 +10,22 @@ use Src\Games\Domain\Models\Game;
 use Src\Matches\Domain\Models\GameMatch;
 use Src\Users\Domain\Models\User;
 
-
-
 /**
  * @property-read Game|null $game
  * @property-read User|null $player
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult query()
- * @property int $id
- * @property int $user_id
- * @property int $match_id
- * @property int $position
- * @property string $status
+ *
+ * @property int                          $id
+ * @property int                          $user_id
+ * @property int                          $match_id
+ * @property int                          $position
+ * @property string                       $status
  * @property \Carbon\CarbonImmutable|null $created_at
  * @property \Carbon\CarbonImmutable|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult whereMatchId($value)
@@ -32,6 +33,9 @@ use Src\Users\Domain\Models\User;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|MatchResult whereUserId($value)
+ *
+ * @property-read Game $match
+ *
  * @mixin \Eloquent
  */
 class MatchResult extends Model

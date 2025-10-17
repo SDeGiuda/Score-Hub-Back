@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Src\Games\App\Requests;
 
-
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Src\Games\Domain\DataTransferObjects\GameDto;
@@ -31,9 +30,11 @@ class UpsertGameRequest extends FormRequest
     public const string MIN_TEAM_LENGTH = 'min_team_length';
 
     public const string MAX_TEAM_LENGTH = 'max_team_length';
+
     public const string RULES = 'rules';
 
     public const string MIN_POINT = 'min_points';
+
     public const string MAX_POINTS = 'max_points';
 
     public function rules(): array
@@ -48,7 +49,7 @@ class UpsertGameRequest extends FormRequest
             self::MAX_TEAM_LENGTH => ['required', 'numeric', 'max:20'],
             self::ROUND_DURATION => ['required', 'numeric'],
             self::ROUNDS => ['required', 'numeric'],
-            self::ENDING => ['required', 'string',Rule::enum(EndingEnum::class)],
+            self::ENDING => ['required', 'string', Rule::enum(EndingEnum::class)],
             self::RULES => ['string'],
             self::MIN_POINT=> ['required', 'numeric'],
             self::MAX_POINTS => ['required', 'numeric'],
@@ -69,8 +70,8 @@ class UpsertGameRequest extends FormRequest
             min_team_length: $this->integer(self::MIN_TEAM_LENGTH),
             max_team_length: $this->integer(self::MAX_TEAM_LENGTH),
             rules: $this->string(self::RULES)->toString(),
-            min_points:$this->integer(self::MIN_POINT),
-            max_points:$this->integer(self::MAX_POINTS),
+            min_points: $this->integer(self::MIN_POINT),
+            max_points: $this->integer(self::MAX_POINTS),
         );
     }
 }

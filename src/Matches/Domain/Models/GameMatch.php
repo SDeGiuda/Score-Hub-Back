@@ -21,6 +21,7 @@ use Src\Users\Domain\Models\User;
  * @property-read Game $game
  * @property-read \Illuminate\Database\Eloquent\Collection<int, MatchResult> $results
  * @property-read int|null $results_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|GameMatch newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|GameMatch newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|GameMatch query()
@@ -29,8 +30,11 @@ use Src\Users\Domain\Models\User;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|GameMatch whereGameId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|GameMatch whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|GameMatch whereUpdatedAt($value)
+ *
  * @property string $name
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|GameMatch whereName($value)
+ *
  * @mixin \Eloquent
  */
 class GameMatch extends Model
