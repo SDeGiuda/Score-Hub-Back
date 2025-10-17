@@ -10,6 +10,7 @@ use Src\Games\App\Requests\UpsertGameRequest;
 use Src\Games\Domain\Actions\CreateGameAction;
 use Src\Users\App\Resources\UserResource;
 use Src\Users\Domain\Models\User;
+use Src\Games\App\Resources\GameResource;
 
 class CreateGameControlller
 {
@@ -19,8 +20,8 @@ class CreateGameControlller
         #[CurrentUser]
         User $user,
     ): JsonResponse {
-        $user = $createGameAction->execute($request->toDto(), $user);
+        $game = $createGameAction->execute($request->toDto(), $user);
 
-        return UserResource::make($user)->response();
+        return GameResource::make($game)->response();
     }
 }
