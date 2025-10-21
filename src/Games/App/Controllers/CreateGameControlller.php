@@ -7,10 +7,9 @@ namespace Src\Games\App\Controllers;
 use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Http\JsonResponse;
 use Src\Games\App\Requests\UpsertGameRequest;
-use Src\Games\Domain\Actions\CreateGameAction;
-use Src\Users\App\Resources\UserResource;
-use Src\Users\Domain\Models\User;
 use Src\Games\App\Resources\GameResource;
+use Src\Games\Domain\Actions\CreateGameAction;
+use Src\Users\Domain\Models\User;
 
 class CreateGameControlller
 {

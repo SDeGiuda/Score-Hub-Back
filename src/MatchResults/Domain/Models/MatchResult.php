@@ -57,6 +57,6 @@ class MatchResult extends Model
      */
     public function match(): BelongsTo
     {
-        return $this->belongsTo(Game::class);
+        return $this->belongsTo(GameMatch::class);
     }
 }

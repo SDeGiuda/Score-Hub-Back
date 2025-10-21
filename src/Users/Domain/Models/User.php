@@ -47,6 +47,9 @@ use Src\MatchResults\Domain\Models\MatchResult;
  *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, MatchResult> $results
  * @property-read int|null $results_count
+ * @property string $username
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUsername($value)
  *
  * @mixin \Eloquent
  */

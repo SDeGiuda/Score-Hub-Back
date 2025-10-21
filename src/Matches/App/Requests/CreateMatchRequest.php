@@ -17,14 +17,27 @@ class CreateMatchRequest extends FormRequest
         return [
             'creator_id' => ['required', Rule::exists(User::class, 'id')],
             'game_id' => ['required', Rule::exists(Game::class, 'id')],
+            'players' => ['required', 'array'],
+            'players.*' => [
+                'required',
+                'string',
+                Rule::when(
+                    fn ($value): bool => $value !== 'guest',
+                    ['exists:users,name']
+                ),
+            ],
         ];
     }
 
     public function toDto(): MatchDto
     {
+        /** @var array<int, string> $players */
+        $players = $this->array('players');
+
         return new MatchDto(
             creatorId: $this->integer('creator_id'),
             gameId: $this->integer('game_id'),
+            players: $players
         );
     }
 }

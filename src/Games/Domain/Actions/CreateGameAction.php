@@ -13,11 +13,6 @@ class CreateGameAction
 {
     public function execute(GameDto $gameDto, User $user): Game
     {
-        if (! $user) {
-            throw ValidationException::withMessages([
-                'user' => 'This game was created by a null user.',
-            ]);
-        }
         if (Game::where('name', $gameDto->name)->exists()) {
             throw ValidationException::withMessages([
                 'name' => 'This game name already exists.',
@@ -51,6 +46,8 @@ class CreateGameAction
             'min_points'=>$gameDto->min_points,
             'max_points'=>$gameDto->max_points,
             'user_id'=>$user->id,
+            'icon'=>$gameDto->icon,
+            'color'=>$gameDto->color,
         ]);
     }
 }

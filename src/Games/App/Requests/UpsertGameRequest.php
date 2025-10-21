@@ -37,6 +37,10 @@ class UpsertGameRequest extends FormRequest
 
     public const string MAX_POINTS = 'max_points';
 
+    public const string ICON = 'icon';
+
+    public const string COLOR = 'color';
+
     public function rules(): array
     {
         return [
@@ -53,18 +57,24 @@ class UpsertGameRequest extends FormRequest
             self::RULES => ['string'],
             self::MIN_POINT=> ['required', 'numeric'],
             self::MAX_POINTS => ['required', 'numeric'],
+            self::ICON => ['required', 'string'],
+            self::COLOR => ['required', 'string'],
+
         ];
     }
 
     public function toDto(): GameDto
     {
+        /** @var EndingEnum $ending */
+        $ending = $this->enum(self::ENDING, EndingEnum::class);
+
         return new GameDto(
             name: $this->string(self::NAME)->toString(),
             number_of_players: $this->integer(self::NUMBER_OF_PLAYERS),
             turn_duration: $this->integer(self::TURN_DURATION),
             round_duration: $this->integer(self::ROUND_DURATION),
             rounds: $this->integer(self::ROUNDS),
-            ending: $this->enum(self::ENDING, EndingEnum::class),
+            ending: $ending,
             hasTurns: $this->boolean(self::HAS_TURNS),
             hasTeams: $this->boolean(self::HAS_TEAMS),
             min_team_length: $this->integer(self::MIN_TEAM_LENGTH),
@@ -72,6 +82,8 @@ class UpsertGameRequest extends FormRequest
             rules: $this->string(self::RULES)->toString(),
             min_points: $this->integer(self::MIN_POINT),
             max_points: $this->integer(self::MAX_POINTS),
+            color: $this->string(self::COLOR)->toString(),
+            icon: $this->string(self::ICON)->toString(),
         );
     }
 }

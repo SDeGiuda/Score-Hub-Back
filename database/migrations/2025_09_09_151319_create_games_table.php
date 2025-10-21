@@ -26,6 +26,8 @@ return new class extends Migration
             $table->integer("max_team_length");
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->longText("rules")->nullable();
+            $table->string('icon');
+            $table->string('color');
             $table->timestamps();
         });
     }

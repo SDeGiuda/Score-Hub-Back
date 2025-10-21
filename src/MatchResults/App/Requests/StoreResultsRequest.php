@@ -9,7 +9,6 @@ use Illuminate\Validation\Rule;
 use Src\Matches\Domain\Models\GameMatch;
 use Src\MatchResults\Domain\DataTransferObjects\ResultDto;
 use Src\MatchResults\Domain\Enums\ResultStatusEnum;
-use Src\MatchResults\Domain\Models\MatchResult;
 use Src\Users\Domain\Models\User;
 
 class StoreResultsRequest extends FormRequest
@@ -23,7 +22,6 @@ class StoreResultsRequest extends FormRequest
             'results.*.user_id' => ['required', Rule::exists(User::class, 'id')],
             'results.*.position' => ['nullable', 'integer', 'min:1'],
             'results.*.status'=>[Rule::enum(ResultStatusEnum::class)],
-            'results.*.id'=>['nullable', 'integer', Rule::exists(MatchResult::class, 'id')],
         ];
     }
 
@@ -35,7 +33,6 @@ class StoreResultsRequest extends FormRequest
         $resultsArray = [];
         foreach ($results as $result) {
             $resultsArray[] = new ResultDto(
-                id: $result['id'],
                 match_id: $this->integer('game_id'),
                 user_id: (int) $result['user_id'],
                 position: (int) $result['position'],

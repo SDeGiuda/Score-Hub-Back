@@ -9,7 +9,6 @@ use Src\MatchResults\Domain\Enums\ResultStatusEnum;
 readonly class ResultDto
 {
     public function __construct(
-        public int|null $id,
         public int $match_id,
         public int $user_id,
         public int $position,

@@ -22,6 +22,8 @@ class GameDto
         public readonly string $rules,
         public readonly int $min_points,
         public readonly int $max_points,
+        public readonly string $color,
+        public readonly string $icon,
     ) {
     }
 }

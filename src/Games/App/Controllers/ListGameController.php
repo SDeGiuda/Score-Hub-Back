@@ -14,9 +14,7 @@ class ListGameController
     public function __invoke(): JsonResponse
     {
         try {
-            $games = GameResource::collection(Game::all())->response();
-
-            return $games;
+            return GameResource::collection(Game::all())->response();
         } catch (\Throwable $e) {
             Log::error('Error al listar juegos', [
                 'exception' => $e,
