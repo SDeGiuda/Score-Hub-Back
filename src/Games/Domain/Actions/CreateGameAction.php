@@ -48,6 +48,8 @@ class CreateGameAction
             'user_id'=>$user->id,
             'icon'=>$gameDto->icon,
             'color'=>$gameDto->color,
+            'description'=>$gameDto->description,
+            'bg-color'=>$gameDto->bgColor,
         ]);
     }
 }

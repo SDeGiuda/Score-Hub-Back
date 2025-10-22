@@ -23,7 +23,9 @@ class GameDto
         public readonly int $min_points,
         public readonly int $max_points,
         public readonly string $color,
+        public readonly string $bgColor,
         public readonly string $icon,
+        public readonly string $description,
     ) {
     }
 }

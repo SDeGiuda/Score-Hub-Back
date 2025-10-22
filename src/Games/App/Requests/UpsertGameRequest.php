@@ -41,6 +41,10 @@ class UpsertGameRequest extends FormRequest
 
     public const string COLOR = 'color';
 
+    public const string BG_COLOR = 'bg_color';
+
+    public const string DESCRIPTION = 'description';
+
     public function rules(): array
     {
         return [
@@ -59,7 +63,8 @@ class UpsertGameRequest extends FormRequest
             self::MAX_POINTS => ['required', 'numeric'],
             self::ICON => ['required', 'string'],
             self::COLOR => ['required', 'string'],
-
+            self::BG_COLOR => ['required', 'string'],
+            self::DESCRIPTION => ['nullable', 'string'],
         ];
     }
 
@@ -83,7 +88,9 @@ class UpsertGameRequest extends FormRequest
             min_points: $this->integer(self::MIN_POINT),
             max_points: $this->integer(self::MAX_POINTS),
             color: $this->string(self::COLOR)->toString(),
+            bgColor: $this->string(self::BG_COLOR)->toString(),
             icon: $this->string(self::ICON)->toString(),
+            description: $this->string(self::DESCRIPTION)->toString(),
         );
     }
 }
