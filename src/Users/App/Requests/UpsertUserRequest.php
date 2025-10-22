@@ -14,6 +14,8 @@ class UpsertUserRequest extends FormRequest
 {
     public const string NAME = 'name';
 
+    public const string USERNAME = 'username';
+
     public const string EMAIL = 'email_address';
 
     public const string PASSWORD = 'password';
@@ -44,6 +46,14 @@ class UpsertUserRequest extends FormRequest
                     ->numbers(),
                 'confirmed',
             ],
+            self::USERNAME => [
+                'required',
+                'string',
+                'min:4',
+                'max:30',
+                Rule::unique(User::class, 'username')
+                    ->ignore($user?->id),
+            ],
         ];
     }
 
@@ -51,6 +61,7 @@ class UpsertUserRequest extends FormRequest
     {
         return new UserDto(
             name: $this->string(self::NAME)->toString(),
+            username: $this->string(self::USERNAME)->toString(),
             emailAddress: $this->string(self::EMAIL)->toString(),
             password: $this->string(self::PASSWORD)->toString(),
         );

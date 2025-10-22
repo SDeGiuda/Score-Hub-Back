@@ -18,6 +18,7 @@ class CreateMatchController
     {
         $dto = $request->toDto();
         $match = GameMatch::create([
+            'name' => $dto->name,
             'game_id' => $dto->gameId,
             'creator_id' => $dto->creatorId,
         ]);
