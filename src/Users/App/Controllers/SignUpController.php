@@ -6,16 +6,18 @@ namespace Src\Users\App\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Src\Users\App\Requests\UpsertUserRequest;
-use Src\Users\App\Resources\UserResource;
-use Src\Users\Domain\Actions\SignUpAction;
 use Src\Users\Domain\Actions\LoginAction;
+use Src\Users\Domain\Actions\SignUpAction;
 
 final readonly class SignUpController
 {
-    public function __invoke(UpsertUserRequest $request, SignUpAction $storeUserAction, LoginAction $loginAction): JsonResponse
-    {
+    public function __invoke(
+        UpsertUserRequest $request,
+        SignUpAction $storeUserAction,
+        LoginAction $loginAction,
+    ): JsonResponse {
         $dto = $request->toDto();
-        $user = $storeUserAction->execute($dto);
+        $storeUserAction->execute($dto);
         $loginDto = $loginAction->execute(['email' => $dto->emailAddress, 'password' => $dto->password]);
 
         return response()->json([

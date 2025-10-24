@@ -36,6 +36,7 @@ class CreateMatchRequest extends FormRequest
         $players = $this->array('players');
 
         return new MatchDto(
+            name: $this->string('name')->toString(),
             creatorId: $this->integer('creator_id'),
             gameId: $this->integer('game_id'),
             players: $players
