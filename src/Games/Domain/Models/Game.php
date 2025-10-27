@@ -57,6 +57,22 @@ use Src\Matches\Domain\Models\GameMatch;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereMinPoints($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereUserId($value)
  *
+ * @property int         $starting_points
+ * @property int         $finishing_points
+ * @property string|null $description
+ * @property string      $icon
+ * @property string      $color
+ * @property string      $bg_color
+ * @property bool        $is_winning
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereBgColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereFinishingPoints($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereIcon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereIsWinning($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Game whereStartingPoints($value)
+ *
  * @mixin \Eloquent
  */
 class Game extends Model

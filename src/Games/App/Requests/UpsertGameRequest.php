@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Src\Games\App\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 use Src\Games\Domain\DataTransferObjects\GameDto;
-use Src\Games\Domain\EndingEnum;
 
 class UpsertGameRequest extends FormRequest
 {
@@ -33,9 +31,11 @@ class UpsertGameRequest extends FormRequest
 
     public const string RULES = 'rules';
 
-    public const string MIN_POINT = 'min_points';
+    public const string STARTING_POINTS = 'starting_points';
 
-    public const string MAX_POINTS = 'max_points';
+    public const string FINISHING_POINTS = 'finishing_points';
+
+    public const string IS_WINNING = 'is_winning';
 
     public const string ICON = 'icon';
 
@@ -57,10 +57,10 @@ class UpsertGameRequest extends FormRequest
             self::MAX_TEAM_LENGTH => ['required', 'numeric', 'max:20'],
             self::ROUND_DURATION => ['required', 'numeric'],
             self::ROUNDS => ['required', 'numeric'],
-            self::ENDING => ['required', 'string', Rule::enum(EndingEnum::class)],
             self::RULES => ['string'],
-            self::MIN_POINT=> ['required', 'numeric'],
-            self::MAX_POINTS => ['required', 'numeric'],
+            self::STARTING_POINTS=> ['required', 'numeric'],
+            self::FINISHING_POINTS => ['required', 'numeric'],
+            self::IS_WINNING => ['required', 'boolean'],
             self::ICON => ['required', 'string'],
             self::COLOR => ['required', 'string'],
             self::BG_COLOR => ['required', 'string'],
@@ -70,23 +70,20 @@ class UpsertGameRequest extends FormRequest
 
     public function toDto(): GameDto
     {
-        /** @var EndingEnum $ending */
-        $ending = $this->enum(self::ENDING, EndingEnum::class);
-
         return new GameDto(
             name: $this->string(self::NAME)->toString(),
             number_of_players: $this->integer(self::NUMBER_OF_PLAYERS),
             turn_duration: $this->integer(self::TURN_DURATION),
             round_duration: $this->integer(self::ROUND_DURATION),
             rounds: $this->integer(self::ROUNDS),
-            ending: $ending,
             hasTurns: $this->boolean(self::HAS_TURNS),
             hasTeams: $this->boolean(self::HAS_TEAMS),
             min_team_length: $this->integer(self::MIN_TEAM_LENGTH),
             max_team_length: $this->integer(self::MAX_TEAM_LENGTH),
             rules: $this->string(self::RULES)->toString(),
-            min_points: $this->integer(self::MIN_POINT),
-            max_points: $this->integer(self::MAX_POINTS),
+            starting_points: $this->integer(self::STARTING_POINTS),
+            finishing_points: $this->integer(self::FINISHING_POINTS),
+            is_winning: $this->boolean(self::IS_WINNING),
             color: $this->string(self::COLOR)->toString(),
             bgColor: $this->string(self::BG_COLOR)->toString(),
             icon: $this->string(self::ICON)->toString(),

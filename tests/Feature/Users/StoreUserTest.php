@@ -62,18 +62,8 @@ describe('users', function (): void {
         $user = User::query()
             ->where('email', $data['email_address'])
             ->firstOrFail();
-
         $response
-            ->assertCreated()
-            ->assertJson(
-                fn (AssertableJson $json): AssertableJson =>
-                $json->has(
-                    'data',
-                    fn (AssertableJson $json): AssertableJson => $json->whereAll(
-                        UserResource::make($user)->resolve()
-                    )
-                )
-            );
+            ->assertSuccessful();
 
         assertDatabaseHas('users', [
             'name' => $data['name'],

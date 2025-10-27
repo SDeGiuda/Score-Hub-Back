@@ -12,6 +12,7 @@ class StoreUserRequestFactory extends RequestFactory
     {
         return [
             'name' => fake()->name,
+            'username' => fake()->userName,
             'email_address' => fake()->email,
             'password' => '>e$pV4chNFcJoAB%X#{',
             'password_confirmation' => '>e$pV4chNFcJoAB%X#{',

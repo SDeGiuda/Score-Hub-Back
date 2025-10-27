@@ -15,6 +15,7 @@ class CreateMatchRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => ['required', 'string'],
             'creator_id' => ['required', Rule::exists(User::class, 'id')],
             'game_id' => ['required', Rule::exists(Game::class, 'id')],
             'players' => ['required', 'array'],
@@ -35,6 +36,7 @@ class CreateMatchRequest extends FormRequest
         $players = $this->array('players');
 
         return new MatchDto(
+            name: $this->string('name')->toString(),
             creatorId: $this->integer('creator_id'),
             gameId: $this->integer('game_id'),
             players: $players

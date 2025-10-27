@@ -16,6 +16,7 @@ class SignUpAction
         $user = new User();
 
         $user->name = $userDto->name;
+        $user->username = $userDto->username;
         $user->email = $userDto->emailAddress;
         $user->password = Hash::make($userDto->password);
 

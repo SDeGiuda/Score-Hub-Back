@@ -25,12 +25,14 @@ class UpdateGameAction
             'has_teams'=> $gameDto->hasTeams,
             'min_team_length'=>$gameDto->min_team_length,
             'max_team_length'=>$gameDto->max_team_length,
-            'ending' => $gameDto->ending->value,
             'rules'=>$gameDto->rules,
-            'min_points'=>$gameDto->min_points,
-            'max_points'=>$gameDto->max_points,
+            'starting_points'=>$gameDto->starting_points,
+            'finishing_points'=>$gameDto->finishing_points,
+            'is_winning'=>$gameDto->is_winning,
             'icon'=>$gameDto->icon,
             'color'=>$gameDto->color,
+            'bg_color'=>$gameDto->bgColor,
+            'description'=>$gameDto->description,
         ]);
 
         return $game;
