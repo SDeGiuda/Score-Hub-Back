@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Src\Games\App\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Log;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 use Src\Games\App\Resources\GameResource;
 use Src\Games\Domain\Models\Game;
 
@@ -13,16 +14,19 @@ class ListGameController
 {
     public function __invoke(): JsonResponse
     {
-        try {
-            return GameResource::collection(Game::all())->response();
-        } catch (\Throwable $e) {
-            Log::error('Error al listar juegos', [
-                'exception' => $e,
-            ]);
+        $filteredGames = QueryBuilder::for(Game::query())
+            ->allowedFilters([
+                AllowedFilter::partial('name'),
+                AllowedFilter::callback('classic', function (QueryBuilder $query, $value) {
+                    if ($value === 'true' || $value === true || $value === '1') {
+                        return $query->whereNull('user_id');
+                    }
 
-            return response()->json([
-                'message' => 'No se pudieron obtener los juegos.',
-            ], 500);
-        }
+                    return $query->whereNotNull('user_id');
+                }),
+            ])
+        ->get();
+
+        return GameResource::collection($filteredGames)->response();
     }
 }
