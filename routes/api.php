@@ -11,6 +11,7 @@ use Src\Games\App\Controllers\ListGameController;
 use Src\Games\App\Controllers\UpdateGameController;
 use Src\Matches\App\Controllers\CreateMatchController;
 use Src\Matches\App\Controllers\GetMatchController;
+use Src\MatchResults\App\Controllers\ListResultsController;
 use Src\MatchResults\App\Controllers\StoreResultsController;
 
 /*
@@ -36,19 +37,15 @@ Route::middleware('auth:api')
 | Users Routes
 |--------------------------------------------------------------------------
 */
+Route::post('users/login', LoginController::class);
+Route::post('users/', SignUpController::class);
+
 Route::prefix('users')
-    ->middleware([])
+    ->middleware(['auth:api'])
     ->group(static function (): void {
         Route::get('/', ListUserController::class);
-        Route::get('/{user}', GetUserController::class)
-            ->withTrashed()
-            ->whereNumber('user');
-        Route::post('/', SignUpController::class);
-        Route::put('/{user}', UpdateUserController::class)
-            ->whereNumber('user');
-        Route::delete('/{user}', DeleteUserController::class)
-            ->whereNumber('user');
-        Route::post('/login', LoginController::class);
+        Route::get('/{user}', GetUserController::class);
+        Route::put('/{user}', UpdateUserController::class);
     });
 
 Route::middleware(['auth:api'])->group(static function (): void {
@@ -57,13 +54,14 @@ Route::middleware(['auth:api'])->group(static function (): void {
         Route::get('/{game}', GetGameController::class);
         Route::post('/',CreateGameControlller::class);
         Route::put('/{game}', UpdateGameController::class);
-        // Route::delete('/{game}', DeleteGameController::class); Capaz que un usuario admin pueda eliminar un juego.
     });
     Route::prefix("/game-match")->group(static function (): void {
         Route::post('/', CreateMatchController::class);
         Route::get('/{gameMatch}', GetMatchController::class);
+
     });
     Route::prefix("/results")->group(static function (): void {
         Route::post('/',StoreResultsController::class);
+        Route::get('/', ListResultsController::class);
     });
 });
