@@ -31,7 +31,7 @@ final readonly class ResetPasswordController
         try {
             $status = Password::reset(
                 $request->only('email', 'password', 'password_confirmation', 'token'),
-                function ($user, $password) {
+                function ($user, $password): void {
                     $user->forceFill([
                         'password' => Hash::make($password),
                     ])->save();
@@ -48,8 +48,7 @@ final readonly class ResetPasswordController
                 'error' => 'reset_failed',
                 'message' => __($status),
             ], 400);
-
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return response()->json([
                 'error' => 'server_error',
                 'message' => 'An error occurred while resetting your password.',

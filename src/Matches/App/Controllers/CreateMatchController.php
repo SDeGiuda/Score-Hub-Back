@@ -21,7 +21,7 @@ final readonly class CreateMatchController
         $dto = $request->toDto();
 
         try {
-            $match = DB::transaction(function () use ($dto) {
+            $match = DB::transaction(function () use ($dto): array {
                 // Create the match
                 $match = GameMatch::create([
                     'name' => $dto->name,
@@ -42,6 +42,7 @@ final readonly class CreateMatchController
                             'match_id' => $match->id,
                         ]);
                         $playersNotFound[] = $player;
+
                         continue;
                     }
 
@@ -80,7 +81,6 @@ final readonly class CreateMatchController
                 ]);
 
             return $matchResource->response()->setStatusCode(201);
-
         } catch (\Exception $e) {
             Log::error('Failed to create match', [
                 'error' => $e->getMessage(),

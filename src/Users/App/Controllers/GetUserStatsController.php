@@ -53,7 +53,14 @@ final readonly class GetUserStatsController
                 ->join('matches', 'match_results.match_id', '=', 'matches.id')
                 ->join('games', 'matches.game_id', '=', 'games.id')
                 ->where('match_results.user_id', $user->id)
-                ->select('games.id', 'games.name', 'games.icon', 'games.color', 'games.bg_color', DB::raw('COUNT(DISTINCT matches.id) as matches_count'))
+                ->select(
+                    'games.id',
+                    'games.name',
+                    'games.icon',
+                    'games.color',
+                    'games.bg_color',
+                    DB::raw('COUNT(DISTINCT matches.id) as matches_count')
+                )
                 ->groupBy('games.id', 'games.name', 'games.icon', 'games.color', 'games.bg_color')
                 ->orderByDesc('matches_count')
                 ->limit(5)
@@ -63,7 +70,7 @@ final readonly class GetUserStatsController
             $recentMatches = DB::table('match_results')
                 ->join('matches', 'match_results.match_id', '=', 'matches.id')
                 ->join('games', 'matches.game_id', '=', 'games.id')
-                ->leftJoin('users as winners', function ($join) {
+                ->leftJoin('users as winners', function ($join): void {
                     $join->on('winners.id', '=', DB::raw('(
                         SELECT user_id FROM match_results
                         WHERE match_id = match_results.match_id
@@ -85,7 +92,7 @@ final readonly class GetUserStatsController
                 ->orderBy('matches.created_at', 'desc')
                 ->limit(10)
                 ->get()
-                ->map(function ($match) {
+                ->map(function ($match): array {
                     return [
                         'id' => $match->id,
                         'match_name' => $match->match_name,
@@ -113,7 +120,6 @@ final readonly class GetUserStatsController
                     'recent_matches' => $recentMatches,
                 ],
             ], 200);
-
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Failed to fetch user statistics',

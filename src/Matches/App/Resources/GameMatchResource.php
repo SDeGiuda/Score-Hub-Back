@@ -7,8 +7,8 @@ namespace Src\Matches\App\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Src\Games\App\Resources\GameResource;
-use Src\MatchResults\App\Resources\ResultResource;
 use Src\Matches\Domain\Models\GameMatch;
+use Src\MatchResults\App\Resources\ResultResource;
 use Src\Users\App\Resources\UserResource;
 
 /**

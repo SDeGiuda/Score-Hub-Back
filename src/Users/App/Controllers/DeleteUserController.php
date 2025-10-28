@@ -12,7 +12,8 @@ final readonly class DeleteUserController
 {
     public function __invoke(
         User $user,
-        #[CurrentUser] User $authenticatedUser
+        #[CurrentUser]
+        User $authenticatedUser,
     ): JsonResponse {
         // Authorization: Users can only delete their own account
         if ($authenticatedUser->id !== $user->id) {

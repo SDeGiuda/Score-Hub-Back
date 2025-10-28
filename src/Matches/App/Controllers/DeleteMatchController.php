@@ -14,7 +14,7 @@ final readonly class DeleteMatchController
     public function __invoke(GameMatch $gameMatch): JsonResponse
     {
         try {
-            DB::transaction(function () use ($gameMatch) {
+            DB::transaction(function () use ($gameMatch): void {
                 // Delete all match results first (due to foreign key)
                 $gameMatch->results()->delete();
 
@@ -25,7 +25,6 @@ final readonly class DeleteMatchController
             return response()->json([
                 'message' => 'Match deleted successfully',
             ], 200);
-
         } catch (\Exception $e) {
             Log::error('Failed to delete match', [
                 'match_id' => $gameMatch->id,

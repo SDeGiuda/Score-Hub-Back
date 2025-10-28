@@ -18,7 +18,8 @@ final readonly class UpdateGameController
         UpsertGameRequest $request,
         UpdateGameAction $action,
         Game $game,
-        #[CurrentUser] User $authenticatedUser
+        #[CurrentUser]
+        User $authenticatedUser,
     ): JsonResponse {
         // Authorization: Only the game creator can update it
         if ($game->user_id !== $authenticatedUser->id) {

@@ -41,8 +41,7 @@ final readonly class ForgotPasswordController
                 'error' => 'failed_to_send',
                 'message' => 'Unable to send password reset link. Please try again.',
             ], 500);
-
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return response()->json([
                 'error' => 'server_error',
                 'message' => 'An error occurred while processing your request.',

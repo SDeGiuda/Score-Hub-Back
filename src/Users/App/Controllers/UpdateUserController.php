@@ -17,7 +17,8 @@ final readonly class UpdateUserController
         User $user,
         UpsertUserRequest $request,
         UpdateUserAction $updateUserAction,
-        #[CurrentUser] User $authenticatedUser
+        #[CurrentUser]
+        User $authenticatedUser,
     ): JsonResponse {
         // Authorization: Users can only update their own profile
         if ($authenticatedUser->id !== $user->id) {
