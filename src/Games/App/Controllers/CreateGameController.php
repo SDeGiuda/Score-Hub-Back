@@ -11,7 +11,7 @@ use Src\Games\App\Resources\GameResource;
 use Src\Games\Domain\Actions\CreateGameAction;
 use Src\Users\Domain\Models\User;
 
-class CreateGameControlller
+final readonly class CreateGameController
 {
     public function __invoke(
         UpsertGameRequest $request,
@@ -21,6 +21,8 @@ class CreateGameControlller
     ): JsonResponse {
         $game = $createGameAction->execute($request->toDto(), $user);
 
-        return GameResource::make($game)->response();
+        return GameResource::make($game)
+            ->response()
+            ->setStatusCode(201);
     }
 }

@@ -24,7 +24,7 @@ class CreateMatchRequest extends FormRequest
                 'string',
                 Rule::when(
                     fn ($value): bool => $value !== 'guest',
-                    ['exists:users,name']
+                    ['exists:users,username']
                 ),
             ],
         ];

@@ -33,7 +33,7 @@ class StoreResultsRequest extends FormRequest
         $resultsArray = [];
         foreach ($results as $result) {
             $resultsArray[] = new ResultDto(
-                match_id: $this->integer('game_id'),
+                match_id: $this->integer('match_id'),
                 user_id: (int) $result['user_id'],
                 position: (int) $result['position'],
                 points: (int) $result['points'],
