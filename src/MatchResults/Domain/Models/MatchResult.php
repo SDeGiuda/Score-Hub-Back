@@ -49,7 +49,7 @@ class MatchResult extends Model
      */
     public function player(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
@@ -57,6 +57,6 @@ class MatchResult extends Model
      */
     public function match(): BelongsTo
     {
-        return $this->belongsTo(GameMatch::class);
+        return $this->belongsTo(GameMatch::class, 'match_id');
     }
 }

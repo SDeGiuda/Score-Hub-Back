@@ -18,6 +18,9 @@ final readonly class CreateMatchController
 {
     public function __invoke(CreateMatchRequest $request): JsonResponse
     {
+        Log::info('Creating a new match', [
+            'request_data' => $request->all(),
+        ]);
         $dto = $request->toDto();
 
         try {

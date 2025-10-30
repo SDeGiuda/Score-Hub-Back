@@ -56,7 +56,7 @@ class GameMatch extends Model
      */
     public function results(): HasMany
     {
-        return $this->hasMany(MatchResult::class);
+        return $this->hasMany(MatchResult::class, 'match_id');
     }
 
     /**
