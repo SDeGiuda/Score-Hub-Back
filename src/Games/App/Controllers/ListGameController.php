@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Src\Games\App\Controllers;
 
+use Illuminate\Container\Attributes\CurrentUser;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use Src\Games\App\Resources\GameResource;
 use Src\Games\Domain\Models\Game;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Container\Attributes\CurrentUser;
 
 final readonly class ListGameController
 {
@@ -32,9 +32,9 @@ final readonly class ListGameController
 
                     return $query->whereNotNull('user_id');
                 }),
-                AllowedFilter::callback('me',function (Builder $query, $value) use ($user) {
+                AllowedFilter::callback('me', function (Builder $query, $value) use ($user) {
                     if ($value === 'true' || $value === true || $value === '1') {
-                        return $query->where('user_id',$user->id);
+                        return $query->where('user_id', $user->id);
                     }
 
                     return $query;

@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Src\MatchResults\Domain\DataTransferObjects;
 
-use Src\MatchResults\Domain\Enums\ResultStatusEnum;
+use Src\MatchResults\Domain\Models\MatchResult;
 
 readonly class ResultDto
 {
     public function __construct(
-        public int $match_id,
-        public int $user_id,
+        public MatchResult $matchResult,
         public int $position,
         public int $points,
-        public ResultStatusEnum $status,
     ) {
     }
 }

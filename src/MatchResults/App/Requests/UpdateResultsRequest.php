@@ -8,10 +8,10 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Src\Matches\Domain\Models\GameMatch;
 use Src\MatchResults\Domain\DataTransferObjects\ResultDto;
-use Src\MatchResults\Domain\Enums\ResultStatusEnum;
+use Src\MatchResults\Domain\Models\MatchResult;
 use Src\Users\Domain\Models\User;
 
-class StoreResultsRequest extends FormRequest
+class UpdateResultsRequest extends FormRequest
 {
     public function rules(): array
     {
@@ -21,7 +21,6 @@ class StoreResultsRequest extends FormRequest
             'results.*'=>['required', 'array'],
             'results.*.user_id' => ['required', Rule::exists(User::class, 'id')],
             'results.*.position' => ['nullable', 'integer', 'min:1'],
-            'results.*.status'=>[Rule::enum(ResultStatusEnum::class)],
         ];
     }
 
@@ -30,14 +29,14 @@ class StoreResultsRequest extends FormRequest
         /** @var array<int, array{user_id:int|string, position:int|string, points:int|string, status:string}> $results */
         $results = $this->validated('results');
 
+        $matchResults = MatchResult::where('match_id', $this->integer('match_id'))->get();
+
         $resultsArray = [];
         foreach ($results as $result) {
             $resultsArray[] = new ResultDto(
-                match_id: $this->integer('match_id'),
-                user_id: (int) $result['user_id'],
+                matchResult: $matchResults->where('user_id', $result['user_id'])->firstOrFail(),
                 position: (int) $result['position'],
                 points: (int) $result['points'],
-                status: ResultStatusEnum::from($result['status']),
             );
         }
 

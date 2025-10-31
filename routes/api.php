@@ -13,7 +13,7 @@ use Src\Matches\App\Controllers\CreateMatchController;
 use Src\Matches\App\Controllers\GetMatchController;
 use Src\Matches\App\Controllers\DeleteMatchController;
 use Src\MatchResults\App\Controllers\ListResultsController;
-use Src\MatchResults\App\Controllers\StoreResultsController;
+use Src\MatchResults\App\Controllers\UpdateResultsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ Route::middleware(['auth:api'])->group(static function (): void {
         Route::delete('/{gameMatch}', DeleteMatchController::class);
     });
     Route::prefix("/results")->group(static function (): void {
-        Route::post('/',StoreResultsController::class);
+        Route::patch('/',UpdateResultsController::class);
         Route::get('/', ListResultsController::class);
     });
 });
