@@ -20,7 +20,9 @@ class UpdateResultsRequest extends FormRequest
             'match_id' => ['required', 'integer', Rule::exists(GameMatch::class, 'id')],
             'results.*'=>['required', 'array'],
             'results.*.user_id' => ['required', Rule::exists(User::class, 'id')],
-            'results.*.position' => ['nullable', 'integer', 'min:1'],
+            'results.*.position' => ['required', 'integer', 'min:1'],
+            'results.*.points' => ['required', 'integer'],
+
         ];
     }
 
@@ -39,7 +41,7 @@ class UpdateResultsRequest extends FormRequest
                 points: (int) $result['points'],
             );
         }
-
+        
         return $resultsArray;
     }
 }

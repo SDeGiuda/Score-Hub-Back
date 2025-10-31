@@ -11,6 +11,7 @@ return new class extends Migration {
     {
         Schema::table('match_results', function (Blueprint $table) {
             $table->unique(['user_id', 'match_id']);
+            $table->integer('points')->default(0);
         });
     }
 
@@ -18,6 +19,7 @@ return new class extends Migration {
     {
         Schema::table('match_results', function (Blueprint $table) {
             $table->dropUnique(['user_id', 'match_id']);
+            $table->dropColumn('points');
         });
     }
 };

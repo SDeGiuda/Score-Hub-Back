@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Src\Games\App\Controllers;
 
+use Src\Games\App\Resources\GameResource;
+use Src\Games\Domain\Models\Game;
 use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
-use Src\Games\App\Resources\GameResource;
-use Src\Games\Domain\Models\Game;
+
 
 final readonly class ListGameController
 {
