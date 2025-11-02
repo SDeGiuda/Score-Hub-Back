@@ -3,10 +3,11 @@
 declare(strict_types=1);
 
 namespace Src\MatchResults\App\Controllers;
-use Illuminate\Support\Facades\Log;
+
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Src\MatchResults\App\Requests\UpdateResultsRequest;
 use Src\MatchResults\App\Resources\ResultResource;
 use Src\MatchResults\Domain\Enums\ResultStatusEnum;
@@ -32,6 +33,7 @@ final readonly class UpdateResultsController
         });
         Log::info('updating resutls');
         Log::info($dtos->pluck('matchResult'));
+
         return ResultResource::collection($dtos->pluck('matchResult'))->response();
     }
 }
