@@ -26,6 +26,8 @@ use Src\MatchResults\App\Controllers\UpdateResultsController;
 |
 */
 
+Route::get('/', fn()=> response()->json(['data'=>'test passed']));
+
 Route::middleware('auth:api')
     ->get('/me', function (#[CurrentUser] $user) {
         return response()->json([
