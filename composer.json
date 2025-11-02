@@ -23,7 +23,6 @@
     "barryvdh/laravel-ide-helper": "^3.0",
     "brianium/paratest": "^7.4",
     "captainhook/hook-installer": "^1.0",
-    "captainhook/plugin-composer": "^5.3",
     "fakerphp/faker": "^1.23",
     "laravel/pail": "^1.2.2",
     "laravel/pint": "^1.24",
@@ -36,7 +35,6 @@
     "phpunit/phpunit": "^11.0.1",
     "sojeda/conventional-commits": "^1.5",
     "spatie/laravel-ignition": "^2.4",
-    "webgriffe/captainhook": "^2.1",
     "worksome/coding-style": "^3.0",
     "worksome/request-factories": "^3.3"
   },
@@ -95,7 +93,6 @@
       "php-http/discovery": true,
       "dealerdirect/phpcodesniffer-composer-installer": true,
       "worksome/coding-style": true,
-      "captainhook/plugin-composer": true,
       "captainhook/hook-installer": true
     }
   },
