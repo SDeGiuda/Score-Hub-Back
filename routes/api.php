@@ -26,7 +26,7 @@ use Src\MatchResults\App\Controllers\UpdateResultsController;
 |
 */
 
-Route::get('/', fn()=> response()->json(['data'=>'test passed']));
+
 
 Route::middleware('auth:api')
     ->get('/me', function (#[CurrentUser] $user) {
@@ -46,7 +46,7 @@ Route::post('users/forgot-password', ForgotPasswordController::class);
 Route::post('users/reset-password', ResetPasswordController::class);
 
 Route::prefix('users')
-    ->middleware(['auth:api'])
+    //->middleware(['auth:api'])
     ->group(static function (): void {
         Route::post('/logout', LogoutController::class);
         Route::get('/stats', GetUserStatsController::class);
