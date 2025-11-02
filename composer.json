@@ -91,8 +91,7 @@
       "pestphp/pest-plugin": true,
       "php-http/discovery": true,
       "dealerdirect/phpcodesniffer-composer-installer": true,
-      "worksome/coding-style": true,
-      "captainhook/hook-installer": false
+      "worksome/coding-style": true
     }
   },
   "minimum-stability": "stable",
