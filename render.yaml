@@ -1,5 +1,5 @@
 services:
-  # --- APP ---
+  # --- APP Laravel ---
   - type: web
     name: laravel-app
     env: docker
@@ -20,42 +20,79 @@ services:
         sync: false
       - key: APP_URL
         value: https://laravel-app.onrender.com
+
+      # --- Database ---
       - key: DB_CONNECTION
-        value: mysql
+        value: pgsql
       - key: DB_HOST
-        fromService: mysql
+        fromService: postgres
       - key: DB_PORT
-        value: 3306
+        value: 5432
       - key: DB_DATABASE
         value: laravel
       - key: DB_USERNAME
-        value: root
+        value: laravel
       - key: DB_PASSWORD
-        value: root
+        value: laravel
 
-  # --- MYSQL ---
+      # --- Redis ---
+      - key: REDIS_HOST
+        fromService: redis
+      - key: REDIS_PORT
+        value: 6379
+
+      # --- MinIO ---
+      - key: FILESYSTEM_DISK
+        value: s3
+      - key: AWS_ACCESS_KEY_ID
+        value: sail
+      - key: AWS_SECRET_ACCESS_KEY
+        value: password
+      - key: AWS_DEFAULT_REGION
+        value: us-east-1
+      - key: AWS_BUCKET
+        value: laravel-bucket
+      - key: AWS_ENDPOINT
+        fromService: minio
+
+  # --- PostgreSQL ---
   - type: pserv
-    name: mysql
+    name: postgres
     env: docker
-    image: mysql:8.0
+    image: postgres:17.2
     plan: free
     envVars:
-      - key: MYSQL_ROOT_PASSWORD
-        value: root
-      - key: MYSQL_DATABASE
+      - key: POSTGRES_DB
         value: laravel
-      - key: MYSQL_USER
+      - key: POSTGRES_USER
         value: laravel
-      - key: MYSQL_PASSWORD
+      - key: POSTGRES_PASSWORD
         value: laravel
     disk:
-      name: mysql-data
-      mountPath: /var/lib/mysql
+      name: pgsql-data
+      mountPath: /var/lib/postgresql/data
       sizeGB: 1
 
-  # --- REDIS (opcional, si lo usás con queue/cache) ---
+  # --- Redis ---
   - type: pserv
     name: redis
     env: docker
     image: redis:7
     plan: free
+
+  # --- MinIO ---
+  - type: pserv
+    name: minio
+    env: docker
+    image: minio/minio:latest
+    plan: free
+    envVars:
+      - key: MINIO_ROOT_USER
+        value: sail
+      - key: MINIO_ROOT_PASSWORD
+        value: password
+    disk:
+      name: minio-data
+      mountPath: /data/minio
+      sizeGB: 1
+    startCommand: minio server /data/minio --console-address ":8900"
