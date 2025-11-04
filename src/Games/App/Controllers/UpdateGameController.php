@@ -21,13 +21,6 @@ final readonly class UpdateGameController
         #[CurrentUser]
         User $authenticatedUser,
     ): JsonResponse {
-        // Authorization: Only the game creator can update it
-        if ($game->user_id !== $authenticatedUser->id) {
-            return response()->json([
-                'error' => 'forbidden',
-                'message' => 'You are not authorized to update this game.',
-            ], 403);
-        }
 
         $updatedGame = $action->execute($game, $request->toDto());
 

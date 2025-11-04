@@ -25,7 +25,7 @@ final readonly class DeleteMatchController
             return response()->json([
                 'message' => 'Match deleted successfully',
             ], 200);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             Log::error('Failed to delete match', [
                 'match_id' => $gameMatch->id,
                 'error' => $e->getMessage(),
@@ -33,7 +33,7 @@ final readonly class DeleteMatchController
 
             return response()->json([
                 'error' => 'Failed to delete match',
-                'message' => $e->getMessage(),
+                'message' => "unknown error",
             ], 500);
         }
     }

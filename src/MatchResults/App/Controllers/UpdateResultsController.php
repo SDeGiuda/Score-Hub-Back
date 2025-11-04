@@ -31,9 +31,6 @@ final readonly class UpdateResultsController
                 );
             });
         });
-        Log::info('updating resutls');
-        Log::info($dtos->pluck('matchResult'));
-
         return ResultResource::collection($dtos->pluck('matchResult'))->response();
     }
 }

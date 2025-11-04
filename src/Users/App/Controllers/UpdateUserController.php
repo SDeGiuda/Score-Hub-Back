@@ -20,13 +20,6 @@ final readonly class UpdateUserController
         #[CurrentUser]
         User $authenticatedUser,
     ): JsonResponse {
-        // Authorization: Users can only update their own profile
-        if ($authenticatedUser->id !== $user->id) {
-            return response()->json([
-                'error' => 'forbidden',
-                'message' => 'You are not authorized to update this user profile.',
-            ], 403);
-        }
 
         $user = $updateUserAction->execute($user, $request->toDto());
 

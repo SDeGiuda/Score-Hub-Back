@@ -15,13 +15,7 @@ final readonly class DeleteUserController
         #[CurrentUser]
         User $authenticatedUser,
     ): JsonResponse {
-        // Authorization: Users can only delete their own account
-        if ($authenticatedUser->id !== $user->id) {
-            return response()->json([
-                'error' => 'forbidden',
-                'message' => 'You are not authorized to delete this user account.',
-            ], 403);
-        }
+
 
         $user->delete();
 

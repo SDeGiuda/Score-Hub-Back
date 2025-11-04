@@ -9,10 +9,14 @@ namespace Src\Users\Domain\Models;
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+use Src\Games\Domain\Models\Game;
+use Src\Matches\Domain\Models\GameMatch;
 use Src\MatchResults\Domain\Models\MatchResult;
 
 /**
@@ -30,7 +34,6 @@ use Src\MatchResults\Domain\Models\MatchResult;
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
@@ -42,15 +45,13 @@ use Src\MatchResults\Domain\Models\MatchResult;
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- *
  * @mixin Eloquent
- *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, MatchResult> $results
  * @property-read int|null $results_count
  * @property string $username
- *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUsername($value)
- *
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, GameMatch> $metches
+ * @property-read int|null $metches_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements JWTSubject
@@ -114,10 +115,23 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
-     * @return BelongsToMany<MatchResult, $this>
+     * @return HasMany<MatchResult, $this>
      */
-    public function results(): BelongsToMany
+    public function results(): HasMany
     {
-        return $this->belongsToMany(MatchResult::class);
+        return $this->hasMany(MatchResult::class);
+    }
+
+    /**
+     * @return BelongsToMany<GameMatch, $this>
+     */
+    public function matches(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            GameMatch::class,
+            'match_results',
+            'user_id',
+            'match_id'
+        );
     }
 }

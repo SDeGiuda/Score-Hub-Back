@@ -8,27 +8,18 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
+use Src\Users\App\Requests\ForgotPasswordRequest;
 
 final readonly class ForgotPasswordController
 {
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(ForgotPasswordRequest $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'email' => ['required', 'email', 'exists:users,email'],
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'error' => 'validation_failed',
-                'message' => 'The email field is required and must be a valid email address.',
-                'fields' => $validator->errors(),
-            ], 422);
-        }
+        $email = $request->validated('email');
 
         try {
             // Send password reset link
             $status = Password::sendResetLink(
-                $request->only('email')
+               $email
             );
 
             if ($status === Password::RESET_LINK_SENT) {
@@ -37,15 +28,12 @@ final readonly class ForgotPasswordController
                 ], 200);
             }
 
-            return response()->json([
-                'error' => 'failed_to_send',
-                'message' => 'Unable to send password reset link. Please try again.',
-            ], 500);
-        } catch (\Exception) {
-            return response()->json([
-                'error' => 'server_error',
-                'message' => 'An error occurred while processing your request.',
-            ], 500);
-        }
+
+        } catch (\Exception) {}
+
+        return response()->json([
+            'error' => 'failed_to_send',
+            'message' => 'Unable to send password reset link. Please try again.',
+        ], 500);
     }
 }
