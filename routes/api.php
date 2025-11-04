@@ -44,9 +44,12 @@ Route::post('users/login', LoginController::class);
 Route::post('users/', SignUpController::class);
 Route::post('users/forgot-password', ForgotPasswordController::class);
 Route::post('users/reset-password', ResetPasswordController::class);
+Route::get('/', function () {
+    return response()->json(['data' => 'test'], 200);
+});
 
 Route::prefix('users')
-    //->middleware(['auth:api'])
+    ->middleware(['auth:api'])
     ->group(static function (): void {
         Route::post('/logout', LogoutController::class);
         Route::get('/stats', GetUserStatsController::class);
