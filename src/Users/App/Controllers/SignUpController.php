@@ -26,6 +26,6 @@ final readonly class SignUpController
                 'token_type' => $loginDto->tokenType,
                 'expires_in' => $loginDto->expiresIn,
             ],
-        ]);
+        ], 201);
     }
 }
