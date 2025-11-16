@@ -15,9 +15,10 @@ final readonly class GetUserStatsController
     public function __invoke(#[CurrentUser] User $user): JsonResponse
     {
         try {
-
-            $totalMatches = $user->results_count;
-
+            // Calculate total matches directly from results table
+            $totalMatches = MatchResult::query()
+                ->where('user_id', $user->id)
+                ->count();
 
             $victories = MatchResult::query()
                 ->where('user_id', $user->id)
@@ -26,28 +27,51 @@ final readonly class GetUserStatsController
 
             $defeats = $totalMatches - $victories;
 
-            $recentResults =$user->results()
+            $recentResults = $user->results()
                 ->orderBy('created_at', 'desc')
                 ->limit(5)
                 ->pluck('position');
 
-            $currentStreak = $recentResults->takeWhile(fn ($value) => $value==1)->count();
+            $currentStreak = $recentResults->takeWhile(fn ($value) => $value == 1)->count();
 
-            // Get most played games
-            $favoriteGames =$user->matches()
-                ->selectRaw('matches.game_id, COUNT(*) as count')
-                ->groupBy('matches.game_id')
-                ->orderByDesc('count')
+            // Get most played games with game details
+            $favoriteGamesData = DB::table('match_results')
+                ->join('matches', 'match_results.match_id', '=', 'matches.id')
+                ->join('games', 'matches.game_id', '=', 'games.id')
+                ->where('match_results.user_id', $user->id)
+                ->select(
+                    'games.id',
+                    'games.name',
+                    'games.icon',
+                    'games.color',
+                    'games.bg_color',
+                    DB::raw('COUNT(DISTINCT matches.id) as matches_count')
+                )
+                ->groupBy('games.id', 'games.name', 'games.icon', 'games.color', 'games.bg_color')
+                ->orderByDesc('matches_count')
                 ->limit(10)
-                ->pluck('count', 'game_id');
+                ->get();
+
+            $favoriteGames = $favoriteGamesData->map(function ($game): array {
+                return [
+                    'id' => $game->id,
+                    'name' => $game->name,
+                    'icon' => $game->icon,
+                    'color' => $game->color,
+                    'bg_color' => $game->bg_color,
+                    'matches_count' => $game->matches_count,
+                ];
+            });
 
             $recentMatches = $user->matches()
-                ->with(['results','game'])
+                ->with(['results.player', 'game'])
                 ->latest()
                 ->limit(10)
                 ->get()
                 ->map(function ($match) use ($user): array {
                     $result = $match->results->where('user_id', $user->id)->first();
+                    $winner = $match->results->where('position', 1)->first();
+
                     return [
                         'id' => $match->id,
                         'match_name' => $match->name,
@@ -55,11 +79,11 @@ final readonly class GetUserStatsController
                         'icon' => $match->game->icon,
                         'color' => $match->game->color,
                         'position' => $result->position,
+                        'winner' => $winner?->player?->name ?? 'N/A',
                         'date' => $match->created_at,
                         'won' => $result->position === 1,
                     ];
                 });
-
 
             $winRate = $totalMatches > 0 ? round(($victories / $totalMatches) * 100, 1) : 0;
 
@@ -77,7 +101,8 @@ final readonly class GetUserStatsController
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Failed to fetch user statistics',
-                'message' => "error",
+                'message' => $e->getMessage(),
+                'trace' => config('app.debug') ? $e->getTraceAsString() : null,
             ], 500);
         }
     }
