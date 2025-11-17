@@ -15,6 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Create system user first (id = 0) for classic games
+        $this->call(SystemUserSeeder::class);
+
+        // Create classic games owned by system user
+        $this->call(ClassicGamesSeeder::class);
+
+        // Create regular users
         UserFactory::new()->createMany(35);
     }
 }
