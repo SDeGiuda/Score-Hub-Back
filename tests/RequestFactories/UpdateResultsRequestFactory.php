@@ -29,7 +29,7 @@ class UpdateResultsRequestFactory extends RequestFactory
 
         return [
             'match_id' => $match->id,
-            'results' => $users->map(fn ($user, $index) => [
+            'results' => $users->map(fn ($user, $index): array => [
                 'user_id' => $user->id,
                 'position' => $index + 1,
                 'points' => fake()->numberBetween(0, 100),

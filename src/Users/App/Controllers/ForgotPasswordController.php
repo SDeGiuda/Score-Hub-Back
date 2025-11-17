@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Src\Users\App\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Validator;
 use Src\Users\App\Requests\ForgotPasswordRequest;
 
 final readonly class ForgotPasswordController
@@ -19,7 +17,7 @@ final readonly class ForgotPasswordController
         try {
             // Send password reset link
             $status = Password::sendResetLink(
-               ['email' => $email]
+                ['email' => $email]
             );
 
             if ($status === Password::RESET_LINK_SENT) {
@@ -27,9 +25,8 @@ final readonly class ForgotPasswordController
                     'message' => 'Password reset link sent to your email address.',
                 ], 200);
             }
-
-
-        } catch (\Exception) {}
+        } catch (\Exception) {
+        }
 
         return response()->json([
             'error' => 'failed_to_send',

@@ -7,12 +7,10 @@ namespace Src\MatchResults\App\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Src\MatchResults\App\Requests\UpdateResultsRequest;
 use Src\MatchResults\App\Resources\ResultResource;
 use Src\MatchResults\Domain\DataTransferObjects\ResultDto;
 use Src\MatchResults\Domain\Enums\ResultStatusEnum;
-use Src\MatchResults\Domain\Models\MatchResult;
 
 final readonly class UpdateResultsController
 {
@@ -32,6 +30,7 @@ final readonly class UpdateResultsController
                 );
             });
         });
+
         return ResultResource::collection($dtos->pluck('matchResult'))->response();
     }
 }

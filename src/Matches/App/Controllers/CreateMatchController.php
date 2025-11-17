@@ -22,7 +22,6 @@ final readonly class CreateMatchController
 
         try {
             $match = DB::transaction(function () use ($dto): array {
-
                 $match = GameMatch::create([
                     'name' => $dto->name,
                     'game_id' => $dto->gameId,
@@ -42,7 +41,6 @@ final readonly class CreateMatchController
                         'position' => 0,
                         'status' => ResultStatusEnum::ACTIVE,
                     ]);
-
                 }
 
                 $match->load('game', 'creator', 'results.player');
@@ -70,7 +68,7 @@ final readonly class CreateMatchController
 
             return response()->json([
                 'error' => 'Failed to create match',
-                'message' => "unknown error",
+                'message' => 'unknown error',
             ], 500);
         }
     }

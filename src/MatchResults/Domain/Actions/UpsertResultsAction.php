@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Src\MatchResults\Domain\Actions;
 
-use Sentry\Transport\ResultStatus;
 use Src\MatchResults\Domain\DataTransferObjects\ResultDto;
 use Src\MatchResults\Domain\Enums\ResultStatusEnum;
-use Src\MatchResults\Domain\Models\MatchResult;
 
 class UpsertResultsAction
 {
@@ -20,7 +18,7 @@ class UpsertResultsAction
             $resultDto->matchResult->updateOrFail([
                 'position' => $resultDto->position,
                 'points' => $resultDto->points,
-                'status' => ResultStatusEnum::ACTIVE
+                'status' => ResultStatusEnum::ACTIVE,
             ]);
         }
     }

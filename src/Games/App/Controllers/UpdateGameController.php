@@ -21,7 +21,9 @@ final readonly class UpdateGameController
         #[CurrentUser]
         User $authenticatedUser,
     ): JsonResponse {
-
+        if ($game->user_id !== $authenticatedUser->id) {
+            return GameResource::make($game)->response();
+        }
         $updatedGame = $action->execute($game, $request->toDto());
 
         return GameResource::make($updatedGame)->response();

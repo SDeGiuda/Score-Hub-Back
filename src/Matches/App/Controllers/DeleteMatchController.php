@@ -33,7 +33,7 @@ final readonly class DeleteMatchController
 
             return response()->json([
                 'error' => 'Failed to delete match',
-                'message' => "unknown error",
+                'message' => 'unknown error',
             ], 500);
         }
     }

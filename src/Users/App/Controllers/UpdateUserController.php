@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Src\Users\App\Controllers;
 
-use Illuminate\Container\Attributes\CurrentUser;
 use Illuminate\Http\JsonResponse;
 use Src\Users\App\Requests\UpsertUserRequest;
 use Src\Users\App\Resources\UserResource;
@@ -17,10 +16,7 @@ final readonly class UpdateUserController
         User $user,
         UpsertUserRequest $request,
         UpdateUserAction $updateUserAction,
-        #[CurrentUser]
-        User $authenticatedUser,
     ): JsonResponse {
-
         $user = $updateUserAction->execute($user, $request->toDto());
 
         return UserResource::make($user)

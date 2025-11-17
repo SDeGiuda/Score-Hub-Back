@@ -28,10 +28,10 @@ final readonly class ListGameController
                 AllowedFilter::partial('name'),
                 AllowedFilter::callback('classic', function (Builder $query, $value) {
                     if ($value === 'true' || $value === true || $value === '1') {
-                        return $query->where('user_id',0);
+                        return $query->where('user_id', 0);
                     }
 
-                    return $query->whereNot('user_id',0);
+                    return $query->whereNot('user_id', 0);
                 }),
                 AllowedFilter::callback('me', function (Builder $query, $value) use ($user) {
                     if ($value === 'true' || $value === true || $value === '1') {

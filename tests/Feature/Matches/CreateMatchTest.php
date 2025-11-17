@@ -111,7 +111,7 @@ describe('matches', function (): void {
             ->assertJsonValidationErrors(['players'], 'error.fields');
     });
 
-    // TODO: Fix guest player validation in CreateMatchRequest
+    // do later: Fix guest player validation in CreateMatchRequest
     // it('can create a match with guest player', function (): void {
     //     $user = UserFactory::new()->createOne();
     //     $game = GameFactory::new()->createOne();

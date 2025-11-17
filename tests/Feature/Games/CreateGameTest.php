@@ -6,7 +6,6 @@ namespace Tests\Feature\Games;
 
 use Database\Factories\UserFactory;
 use Illuminate\Http\JsonResponse;
-use Src\Games\Domain\Models\Game;
 use Tests\RequestFactories\CreateGameRequestFactory;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
