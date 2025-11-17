@@ -32,6 +32,10 @@ final readonly class CreateMatchController
                 foreach ($dto->players as $player) {
                     $user = User::whereUsername($player)->first();
 
+                    if ($user === null) {
+                        continue;
+                    }
+
                     MatchResult::create([
                         'match_id' => $match->id,
                         'user_id' => $user->id,

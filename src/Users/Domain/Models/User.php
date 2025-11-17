@@ -52,6 +52,8 @@ use Src\MatchResults\Domain\Models\MatchResult;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUsername($value)
  * @property-read \Illuminate\Database\Eloquent\Collection<int, GameMatch> $metches
  * @property-read int|null $metches_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, GameMatch> $matches
+ * @property-read int|null $matches_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements JWTSubject

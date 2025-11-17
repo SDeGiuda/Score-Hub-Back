@@ -33,7 +33,9 @@ describe('match results', function (): void {
             ]);
 
         // Verify database was updated
-        foreach ($data['results'] as $result) {
+        /** @var array<int, array{user_id: int, position: int, points: int}> $results */
+        $results = $data['results'];
+        foreach ($results as $result) {
             assertDatabaseHas('match_results', [
                 'user_id' => $result['user_id'],
                 'position' => $result['position'],
@@ -89,7 +91,10 @@ describe('match results', function (): void {
     it('cannot update results with invalid data - user_id must exist', function (): void {
         $user = UserFactory::new()->createOne();
         $data = UpdateResultsRequestFactory::new()->create();
-        $data['results'][0]['user_id'] = 99999;
+        /** @var array<int, array{user_id: int, position: int, points: int}> $results */
+        $results = $data['results'];
+        $results[0]['user_id'] = 99999;
+        $data['results'] = $results;
 
         $response = actingAs($user, 'api')
             ->patchJson('/api/results', $data);
@@ -101,7 +106,10 @@ describe('match results', function (): void {
     it('cannot update results with invalid data - position must be at least 1', function (): void {
         $user = UserFactory::new()->createOne();
         $data = UpdateResultsRequestFactory::new()->create();
-        $data['results'][0]['position'] = 0;
+        /** @var array<int, array{user_id: int, position: int, points: int}> $results */
+        $results = $data['results'];
+        $results[0]['position'] = 0;
+        $data['results'] = $results;
 
         $response = actingAs($user, 'api')
             ->patchJson('/api/results', $data);
@@ -126,7 +134,9 @@ describe('match results', function (): void {
         expect($responseData)->toHaveCount(2);
 
         // Verify all results were updated
-        foreach ($data['results'] as $result) {
+        /** @var array<int, array{user_id: int, position: int, points: int}> $results */
+        $results = $data['results'];
+        foreach ($results as $result) {
             assertDatabaseHas('match_results', [
                 'user_id' => $result['user_id'],
                 'position' => $result['position'],

@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Src\MatchResults\App\Controllers;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Src\MatchResults\App\Requests\UpdateResultsRequest;
 use Src\MatchResults\App\Resources\ResultResource;
+use Src\MatchResults\Domain\DataTransferObjects\ResultDto;
 use Src\MatchResults\Domain\Enums\ResultStatusEnum;
 use Src\MatchResults\Domain\Models\MatchResult;
 
@@ -17,11 +18,11 @@ final readonly class UpdateResultsController
 {
     public function __invoke(UpdateResultsRequest $request): JsonResponse
     {
-        /** @var Collection<int, MatchResult> $dtos */
+        /** @var Collection<int, ResultDto> $dtos */
         $dtos = collect($request->toDtos());
 
         DB::transaction(function () use ($dtos): void {
-            $dtos->each(function ($dto): void {
+            $dtos->each(function (ResultDto $dto): void {
                 $dto->matchResult->updateOrFail(
                     [
                         'position' => $dto->position,

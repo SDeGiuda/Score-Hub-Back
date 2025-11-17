@@ -72,16 +72,22 @@ final readonly class GetUserStatsController
                     $result = $match->results->where('user_id', $user->id)->first();
                     $winner = $match->results->where('position', 1)->first();
 
+                    if ($result === null) {
+                        $position = 0;
+                    } else {
+                        $position = $result->position;
+                    }
+
                     return [
                         'id' => $match->id,
                         'match_name' => $match->name,
                         'game_name' => $match->game->name,
                         'icon' => $match->game->icon,
                         'color' => $match->game->color,
-                        'position' => $result->position,
-                        'winner' => $winner?->player?->name ?? 'N/A',
+                        'position' => $position,
+                        'winner' => $winner->player->name ?? 'N/A',
                         'date' => $match->created_at,
-                        'won' => $result->position === 1,
+                        'won' => $position === 1,
                     ];
                 });
 

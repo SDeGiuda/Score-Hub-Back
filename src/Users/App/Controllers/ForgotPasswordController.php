@@ -19,7 +19,7 @@ final readonly class ForgotPasswordController
         try {
             // Send password reset link
             $status = Password::sendResetLink(
-               $email
+               ['email' => $email]
             );
 
             if ($status === Password::RESET_LINK_SENT) {

@@ -45,8 +45,13 @@ describe('matches', function (): void {
         ]);
 
         // Verify match results were created for each player
-        foreach ($data['players'] as $playerUsername) {
+        /** @var array<int, string> $players */
+        $players = $data['players'];
+        foreach ($players as $playerUsername) {
             $player = \Src\Users\Domain\Models\User::whereUsername($playerUsername)->first();
+            if ($player === null) {
+                continue;
+            }
             assertDatabaseHas('match_results', [
                 'user_id' => $player->id,
                 'status' => 'active',

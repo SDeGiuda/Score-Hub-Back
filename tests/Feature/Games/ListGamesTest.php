@@ -7,6 +7,8 @@ namespace Tests\Feature\Games;
 use Database\Factories\GameFactory;
 use Database\Factories\UserFactory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\getJson;
 
@@ -58,33 +60,46 @@ describe('games', function (): void {
     });
 
     it('can filter classic games (games with user_id = 0)', function (): void {
+        // Ensure system user exists
+        DB::table('users')->insertOrIgnore([
+            'id' => 0,
+            'name' => 'System',
+            'username' => 'system',
+            'email' => 'system@scorehub.com',
+            'password' => Hash::make('password'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
         $user = UserFactory::new()->createOne();
         $classicGame = GameFactory::new()->createOne(['user_id' => 0]);
-        $userGame = GameFactory::new()->createOne(['user_id' => $user->id]);
+        GameFactory::new()->createOne(['user_id' => $user->id]);
 
         $response = actingAs($user, 'api')
             ->getJson('/api/games?filter[classic]=true');
 
         $response->assertStatus(JsonResponse::HTTP_OK);
 
+        /** @var array<int, array{id: int}> $responseData */
         $responseData = $response->json('data');
-        expect($responseData)->toHaveCount(1);
-        expect($responseData[0]['id'])->toBe($classicGame->id);
+        expect($responseData)->toHaveCount(1)
+            ->and($responseData[0]['id'])->toBe($classicGame->id);
     });
 
     it('can filter user\'s own games', function (): void {
         $user = UserFactory::new()->createOne();
         $userGame = GameFactory::new()->createOne(['user_id' => $user->id]);
-        $otherUserGame = GameFactory::new()->createOne(['user_id' => UserFactory::new()->createOne()->id]);
+        GameFactory::new()->createOne(['user_id' => UserFactory::new()->createOne()->id]);
 
         $response = actingAs($user, 'api')
             ->getJson('/api/games?filter[me]=true');
 
         $response->assertStatus(JsonResponse::HTTP_OK);
 
+        /** @var array<int, array{id: int}> $responseData */
         $responseData = $response->json('data');
-        expect($responseData)->toHaveCount(1);
-        expect($responseData[0]['id'])->toBe($userGame->id);
+        expect($responseData)->toHaveCount(1)
+            ->and($responseData[0]['id'])->toBe($userGame->id);
     });
 
     it('can paginate games', function (): void {

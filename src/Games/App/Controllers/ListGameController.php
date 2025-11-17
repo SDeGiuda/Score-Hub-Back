@@ -12,10 +12,11 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use Src\Games\App\Resources\GameResource;
 use Src\Games\Domain\Models\Game;
+use Src\Users\Domain\Models\User;
 
 final readonly class ListGameController
 {
-    public function __invoke(Request $request, #[CurrentUser] $user): JsonResponse
+    public function __invoke(Request $request, #[CurrentUser] User $user): JsonResponse
     {
         $perPage = (int) $request->query('per_page', 15);
 
