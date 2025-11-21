@@ -15,10 +15,13 @@ class ListUserAction
      */
     public function execute(): LengthAwarePaginator
     {
-        return QueryBuilder::for(User::class)
+        /** @var QueryBuilder<User> $query */
+        $query = QueryBuilder::for(User::class)
             ->allowedFilters(['email'])
             ->allowedSorts('email')
             ->orderBy('id', 'desc')
-            ->paginate();
+            ->where('id', '>', 0);
+
+        return $query->paginate();
     }
 }
