@@ -22,10 +22,6 @@ class CreateMatchRequest extends FormRequest
             'players.*' => [
                 'required',
                 'string',
-                Rule::when(
-                    fn ($value): bool => $value !== 'guest',
-                    ['exists:users,username']
-                ),
             ],
         ];
     }
